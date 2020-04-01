@@ -1,0 +1,23 @@
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+  <div>
+
+    <div class="m-t" role="form" action="#">
+      <h3>Nueva cuenta</h3>
+
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Username" [(ngModel)]="Usuario.Username">
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="Correo" [(ngModel)]="Usuario.Correo">
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="Contraseña" [(ngModel)]="Usuario.Password">
+      </div>
+
+      <button type="submit" class="btn btn-primary block full-width m-b" (click)="Registrarse()">Registrarse</button>
+
+      <p class="text-muted text-center"><small>¿Ya tiene una cuenta? <a [routerLink]="['/login']">¡Inicie sesión!</a></small></p>
+
+    </div>
+  </div>
+</div>

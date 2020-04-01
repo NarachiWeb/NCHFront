@@ -1,0 +1,21 @@
+<div class="middle-box text-center loginscreen  animated fadeInDown">
+    <div>
+
+        <h3>Welcome to Narachi</h3>
+    
+        <p>Login in. To see it in action.</p>
+        <div class="m-t" role="form" action="#">
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Username" required="" [(ngModel)]="UserLogin.Username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" required="" [(ngModel)]="UserLogin.Password">
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b" (click)="Login()">Login</button>
+
+            <a href="#"><small>Forgot password?</small></a>
+            <p class="text-muted text-center"><small>Do not have an account?</small></p>
+            <a class="btn btn-sm btn-white btn-block" href="#">Create an account</a>
+        </div>
+    </div>
+</div>

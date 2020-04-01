@@ -12,11 +12,13 @@ import {StarterViewComponent} from "./views/appviews/starterview.component";
 import {BlankLayoutComponent} from "./components/common/layouts/blankLayout.component";
 import {BasicLayoutComponent} from "./components/common/layouts/basicLayout.component";
 import {TopNavigationLayoutComponent} from "./components/common/layouts/topNavigationlayout.component";
-import { LoginComponent } from "./views/appviews/login.component";
+import { LoginComponent } from "./views/appviews/login/login.component";
+import { SignUpComponent } from "./views/appviews/sign-up/sign-up.component";
+import { ProfileComponent } from "./views/appviews/profile/profile.component";
 
 export const ROUTES:Routes = [
   // Main redirect
-  {path: '', redirectTo: 'starterview', pathMatch: 'full'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
 
   // App views
   {
@@ -38,7 +40,7 @@ export const ROUTES:Routes = [
   {
     path: '', component: BasicLayoutComponent,
     children: [
-      {path: 'starterview', component: StarterViewComponent}
+      {path: 'home', component: StarterViewComponent}
     ]
   },
   {
@@ -47,7 +49,23 @@ export const ROUTES:Routes = [
       { path: 'login', component: LoginComponent },
     ]
   },
+  {
+    path: '', component: BlankLayoutComponent,
+    children: [
+      { path: 'sign-up', component: SignUpComponent },
+    ]
+  },
+  {
+    path: '', component: BasicLayoutComponent,
+    children: [
+      { path: 'profile', component: ProfileComponent },
+      { path: 'dashboard2', component: Dashboard2Component },
+      { path: 'dashboard3', component: Dashboard3Component },
+      { path: 'dashboard4', component: Dashboard4Component },
+      { path: 'dashboard5', component: Dashboard5Component }
+    ]
+  },
 
-  // Handle all other routes
-  {path: '**',  redirectTo: 'starterview'}
+   //Handle all other routes
+  {path: '**',  redirectTo: 'home'}
 ];
