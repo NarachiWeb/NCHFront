@@ -11,6 +11,7 @@ import { FormsModule } from "@angular/forms";
 import { SignUpComponent } from "./sign-up/sign-up.component";
 import { JwtModule } from "../../jwt/jwt.module";
 import { ProfileComponent } from "./profile/profile.component";
+import { AddRecordComponent } from "./records/addrecord.component";
 //import { DemoMaterialModule } from "../../material/material-module";
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ProfileComponent } from "./profile/profile.component";
     StarterViewComponent,
     LoginComponent,
     SignUpComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddRecordComponent
   ],
   imports: [
     JwtModule,
@@ -34,7 +36,8 @@ import { ProfileComponent } from "./profile/profile.component";
     StarterViewComponent,
     LoginComponent,
     SignUpComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddRecordComponent
 
   ],
 })

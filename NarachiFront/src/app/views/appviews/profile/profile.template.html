@@ -4,7 +4,7 @@
       <div class="col-4">
         <div class="text-center">
           <img alt="image" class="rounded-circle m-t-xs img-fluid" src="{{Usuario.Avatar}}" width="120" height="120" style="border-radius: 50%">
-          <div class="m-t-xs font-bold">Graphics designer</div>
+          <div class="m-t-xs font-bold">Administrador</div>
         </div>
       </div>
       <div class="col-8">
@@ -12,8 +12,8 @@
         <p><i class="fa fa-envelope"></i> {{Usuario.Correo}}</p>
         <address>
           <strong>Miembros desde</strong><br>
-          {{Usuario.FechaCreacion}}
-        
+          {{transformFecha(Usuario.FechaCreacion)}} ({{getAgeByDate(Usuario.Edad)}})
+
         </address>
       </div>
     </a>

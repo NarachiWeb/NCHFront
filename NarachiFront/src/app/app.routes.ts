@@ -15,6 +15,7 @@ import {TopNavigationLayoutComponent} from "./components/common/layouts/topNavig
 import { LoginComponent } from "./views/appviews/login/login.component";
 import { SignUpComponent } from "./views/appviews/sign-up/sign-up.component";
 import { ProfileComponent } from "./views/appviews/profile/profile.component";
+import { AddRecordComponent } from "./views/appviews/records/addrecord.component";
 
 export const ROUTES:Routes = [
   // Main redirect
@@ -59,10 +60,12 @@ export const ROUTES:Routes = [
     path: '', component: BasicLayoutComponent,
     children: [
       { path: 'profile', component: ProfileComponent },
-      { path: 'dashboard2', component: Dashboard2Component },
-      { path: 'dashboard3', component: Dashboard3Component },
-      { path: 'dashboard4', component: Dashboard4Component },
-      { path: 'dashboard5', component: Dashboard5Component }
+    ]
+  },
+  {
+    path: 'records', component: BasicLayoutComponent,
+    children: [
+      { path: 'add', component: AddRecordComponent },
     ]
   },
 
