@@ -14,3 +14,8 @@ export class Usuario {
     Edad: number;
 
 }
+
+export class LoginUser {
+  userName: string;
+  clave: string;
+}

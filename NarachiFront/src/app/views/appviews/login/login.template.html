@@ -1,0 +1,23 @@
+<div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+       
+        <h3>Bienvenido a Narachi</h3>
+        <p>
+          Narachi es un proyecto que nace con el fin de mejorar tu perfomance como jugador orientado principalmente a almacenar y/o consultar registros propios como de otros usuarios. 
+        </p>
+
+        <div class="m-t" role="form" action="#">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" [(ngModel)]="Usuario.Username" name="Usuario.Username">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" [(ngModel)]="Usuario.Password" name="Usuario.Password">
+          </div>
+          <button type="submit" class="btn btn-primary block full-width m-b" (click)="Login()">Login</button>
+
+          <p class="text-muted text-center"><small>Do not have an account? <a>Sign-up</a></small></p>
+          <a href="#"><small>Recover password</small></a>
+
+        </div>
+    </div>
+</div>

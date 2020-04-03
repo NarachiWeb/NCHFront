@@ -6,19 +6,24 @@ import {StarterViewComponent} from "./starterview.component";
 
 import {PeityModule } from '../../components/charts/peity';
 import {SparklineModule } from '../../components/charts/sparkline';
+import { LoginComponent } from "./login/login.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
     StarterViewComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule,
     PeityModule,
-    SparklineModule
+    SparklineModule,
+    FormsModule
   ],
   exports: [
     StarterViewComponent,
+    LoginComponent
   ],
 })
 
