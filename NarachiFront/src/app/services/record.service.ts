@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { JwtService } from '../Jwt/jwt.service';
+import { JwtService } from '../jwt/jwt.service';
 import { Observable } from 'rxjs';
 import { Response } from '@angular/http';
 import { Registro } from '../models/Registro';

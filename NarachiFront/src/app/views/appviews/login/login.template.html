@@ -1,9 +1,9 @@
 <div class="middle-box text-center loginscreen  animated fadeInDown">
-    <div>
+    <div class="ibox-content">
 
-        <h3>Welcome to Narachi</h3>
+        <h3>Bienvenido a Narachi</h3>
     
-        <p>Login in. To see it in action.</p>
+        <p>Ingrese aquí sus credenciales</p>
         <div class="m-t" role="form" action="#">
             <div class="form-group">
                 <input type="email" class="form-control" placeholder="Username" required="" [(ngModel)]="UserLogin.Username">
@@ -11,7 +11,7 @@
             <div class="form-group">
                 <input type="password" class="form-control" placeholder="Password" required="" [(ngModel)]="UserLogin.Password">
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b" (click)="Login()">Login</button>
+            <button type="submit" class="btn btn-success block full-width m-b" (click)="Login()">Login</button>
 
             <a href="#"><small>Forgot password?</small></a>
             <p class="text-muted text-center"><small>Do not have an account?</small></p>

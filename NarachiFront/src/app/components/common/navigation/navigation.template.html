@@ -3,10 +3,10 @@
     <ul class="nav metismenu" id="side-menu">
       <li class="nav-header">
         <div class="profile-element" dropdown>
-          <img alt="image" class="img-circle" src="assets/images/profile_small.jpg">
+          <img alt="image" class="img-circle" src="{{Usuario.Avatar}}" width="60" height="60">
           <a dropdownToggle>
-            <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong> </span>
-            <span class="text-muted text-xs block">Art Director <b class="caret"></b> </span>
+            <span class="block m-t-xs"> <strong class="font-bold">{{Usuario.Nombre + ' ' + Usuario.Apellido}}</strong> </span>
+            <span class="text-muted text-xs block">Administrador <b class="caret"></b> </span>
           </a>
           <ul class="animated fadeInRight dropdown-menu" *dropdownMenu>
             <li><a href="#">Profile</a></li>
@@ -26,9 +26,8 @@
       <li [ngClass]="{active: activeRoute('dashboards')}">
         <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Registros</span> <span class="fa arrow"></span> </a>
         <ul class="nav nav-second-level collapse" [ngClass]="{in: activeRoute('dashboards')}">
-          <li [ngClass]="{active: activeRoute('dashboard1')}"><a [routerLink]="['/dashboards/dashboard1']">Mis registros</a></li>
-          <li [ngClass]="{active: activeRoute('dashboard2')}"><a [routerLink]="['/dashboards/dashboard2']">Nuevo registro</a></li>
-          <li [ngClass]="{active: activeRoute('dashboard3')}"><a [routerLink]="['/dashboards/dashboard3']">Lista de registros</a></li>
+          <li [ngClass]="{active: activeRoute('dashboard1')}"><a [routerLink]="['/records/list']">Lista de registros</a></li>
+          <li [ngClass]="{active: activeRoute('dashboard2')}"><a [routerLink]="['/records/add']">Nuevo registro</a></li>
         </ul>
       </li>
       <li [ngClass]="{active: activeRoute('dashboards')}">

@@ -17,6 +17,9 @@ import {LayoutsModule} from "./components/common/layouts/layouts.module";
 import { AuthenticationService } from './services/auth.service';
 import { AppService } from './services/app.service';
 import { UserService } from './services/user.service';
+import { JwtModule } from './jwt/jwt.module';
+import { RecordService } from './services/record.service';
+import { ChampionService } from './services/champion.service';
 
 @NgModule({
   declarations: [
@@ -29,9 +32,10 @@ import { UserService } from './services/user.service';
     DashboardsModule,
     LayoutsModule,
     AppviewsModule,
+    JwtModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [AuthenticationService, AppService, UserService,{ provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [AuthenticationService, AppService, UserService, RecordService, ChampionService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

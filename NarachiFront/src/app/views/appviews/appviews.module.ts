@@ -11,6 +11,9 @@ import { FormsModule } from "@angular/forms";
 import { SignUpComponent } from "./sign-up/sign-up.component";
 import { JwtModule } from "../../jwt/jwt.module";
 import { ProfileComponent } from "./profile/profile.component";
+import { AddRecordComponent } from "./records/addrecord.component";
+import { ListComponent } from "./records/list.component";
+import { IboxtoolsModule } from "../../components/common/iboxtools/iboxtools.module";
 //import { DemoMaterialModule } from "../../material/material-module";
 
 @NgModule({
@@ -18,7 +21,10 @@ import { ProfileComponent } from "./profile/profile.component";
     StarterViewComponent,
     LoginComponent,
     SignUpComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddRecordComponent,
+    ListComponent,
+
   ],
   imports: [
     JwtModule,
@@ -26,7 +32,8 @@ import { ProfileComponent } from "./profile/profile.component";
     RouterModule,
     PeityModule,
     SparklineModule,
-    FormsModule
+    FormsModule,
+    IboxtoolsModule
     //DemoMaterialModule,
 
   ],
@@ -34,7 +41,10 @@ import { ProfileComponent } from "./profile/profile.component";
     StarterViewComponent,
     LoginComponent,
     SignUpComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddRecordComponent,
+    ListComponent
+
 
   ],
 })
