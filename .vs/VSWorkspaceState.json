@@ -6,11 +6,12 @@
     "\\NarachiFront\\src\\app",
     "\\NarachiFront\\src\\app\\components",
     "\\NarachiFront\\src\\app\\components\\common",
-    "\\NarachiFront\\src\\app\\components\\common\\iboxtools",
+    "\\NarachiFront\\src\\app\\jwt",
+    "\\NarachiFront\\src\\app\\services",
     "\\NarachiFront\\src\\app\\views",
     "\\NarachiFront\\src\\app\\views\\appviews",
-    "\\NarachiFront\\src\\app\\views\\appviews\\records",
-    "\\NarachiFront\\src\\app\\views\\dashboards"
+    "\\NarachiFront\\src\\app\\views\\appviews\\records"
   ],
+  "SelectedNode": "\\NarachiFront\\src\\app\\jwt\\jwt.service.ts",
   "PreviewInSolutionExplorer": false
 }

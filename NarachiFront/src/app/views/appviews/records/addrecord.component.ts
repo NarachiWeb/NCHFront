@@ -4,6 +4,8 @@ import { TipoDeRegistro, TipoRegistro } from '../../../models/TipoDeRegistro';
 import { Campeon } from '../../../models/Campeon';
 import { ChampionService } from '../../../services/champion.service';
 import { Registro } from '../../../models/Registro';
+import { RolesService } from '../../../services/roles.service';
+import { RolesDeCampeon } from '../../../models/RolesDeCampeon';
 
 @Component({
   selector: 'addrecord',
@@ -17,6 +19,8 @@ export class AddRecordComponent {
   Campeon: Campeon;
   Enemigo: Campeon;
   Registro = new Registro();
+  Roles: RolesDeCampeon[];
+  Rol: RolesDeCampeon;
   Target: string;
 
   Success: boolean = false;
@@ -25,16 +29,31 @@ export class AddRecordComponent {
   Anotacion: boolean = false;
   ErrorConCampeon: boolean = false;
   ErrorContraCampeon: boolean = false;
-
-  constructor(private recordService: RecordService, private ChampionService: ChampionService) {
+  Search: string;
+  constructor(private recordService: RecordService, private ChampionService: ChampionService, private rolesService: RolesService) {
   }
 
   ngOnInit() {
 
     this.getTypes();
+    this.getRoles();
 
   }
 
+  getRoles() {
+    this.rolesService.getRoles().subscribe(us => {
+
+      var Result = JSON.parse(us.text());
+      this.Roles = <RolesDeCampeon[]>Result;
+
+      var Rol: RolesDeCampeon = { Id: null, Nombre: 'Todos', Descripcion: null, FechaCreacion: null, FechaModificacion: null };
+      this.Roles.push(Rol);
+
+      this.Roles.sort((a, b) => (a > b ? 1 : -1));
+      this.Rol = Rol;
+    });
+    
+  }
  
 
   getTypes() {
@@ -94,19 +113,19 @@ export class AddRecordComponent {
     this.Registro = new Registro();
     this.Success = false;
     this.Error = false;
+    this.Search = "";
   }
 
   
 
-  public onChange(event): void {  // event will give you full breif of action
-   
-    const newVal = event.target.value;
-    var camp = this.Campeones;
-
-    if (newVal == "Todo")
-      this.List = camp;
-
-    this.List = this.Campeones.filter(x => x.Roles.Nombre == newVal);
+  public onChange(): void {  // event will give you full breif of action
+    debugger;
+    if (this.Rol.Nombre == "Todos") {
+      this.List = this.Campeones;
+    }
+    else {
+      this.List = this.Campeones.filter(x => x.RolId == this.Rol.Id);
+    }
   }
 
   selectChampion(campeon: Campeon) {
@@ -121,17 +140,15 @@ export class AddRecordComponent {
 
 
   selectErrorContraCampeon(champion: Campeon, target: string) {
-    debugger;
+
     if (target == "Campeon") {
       this.Campeon = champion;
       this.Registro.CampeonId = this.Campeon.Id;
-
     }
 
     if (target == "Enemigo") {
       this.Enemigo = champion;
       this.Registro.EnemigoId = this.Enemigo.Id;
-
     }
 
     this.Galeria = false;
@@ -167,6 +184,20 @@ export class AddRecordComponent {
     
 
   }
+
+  filterSearch() {
+    this.List = this.filterByValue(this.Campeones, this.Search);
+  }
+
+  filterByValue(array, string) {
+    if (this.Rol.Nombre == "Todos") {
+      return array.filter((data) => JSON.stringify(data.Nombre).toLowerCase().indexOf(string.toLowerCase()) !== -1);
+    }
+    else {
+      debugger;
+      return array.filter((data) => JSON.stringify(data.Nombre).toLowerCase().indexOf(string.toLowerCase()) !== -1 && data.RolId == this.Rol.Id);
+    }
+   }
 
 
 }

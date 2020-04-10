@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule} from "@angular/router";
-import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+import {LocationStrategy, HashLocationStrategy, DatePipe} from '@angular/common';
 
 import {ROUTES} from "./app.routes";
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import { UserService } from './services/user.service';
 import { JwtModule } from './jwt/jwt.module';
 import { RecordService } from './services/record.service';
 import { ChampionService } from './services/champion.service';
+import { RolesService } from './services/roles.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { ChampionService } from './services/champion.service';
     JwtModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [AuthenticationService, AppService, UserService, RecordService, ChampionService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [AuthenticationService, AppService, UserService, RecordService, ChampionService, RolesService, DatePipe, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,6 +14,7 @@ export class RecordService {
     private _GetRecordsByType = "https://localhost:44312/api/Registro/GetRecordsByType";
     private _List = "https://localhost:44312/api/Registro/List";
     private _GetMyRecordsByChampion = "https://localhost:44312/api/Registro/GetMyRecordsByChampion";
+    private _GetMyRecordsByEnemy = "https://localhost:44312/api/Registro/GetMyRecordsByEnemy";
     private _UpdateRecord = "https://localhost:44312/api/Registro/Update";
     private _DeleteRecord = "https://localhost:44312/api/Registro/Delete";
 
@@ -38,6 +39,10 @@ export class RecordService {
 
     public GetMyRecordsByChampion(Id: string): Observable<Response> {
         return this.jwtService.get(this._GetMyRecordsByChampion + "?Id=" + Id);
+    }
+
+    public GetMyRecordsByEnemy(Id: string): Observable<Response> {
+        return this.jwtService.get(this._GetMyRecordsByEnemy + "?Id=" + Id);
     }
 
     public UpdateRecord(Registro: Registro): Observable<Response> {

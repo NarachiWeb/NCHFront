@@ -63,6 +63,8 @@ export class AuthenticationService {
 
     }
 
+
+
     logOut(): void {
         this.token = null;
         localStorage.removeItem('currentUser');

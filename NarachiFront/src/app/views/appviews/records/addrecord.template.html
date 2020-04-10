@@ -42,17 +42,15 @@
       <div class="ibox-content">
         <div class="row" *ngIf="Galeria">
 
-          <div class="col-lg-2"> <label>Roles</label> </div>
-          <div class="col-lg-10">
+          <div class="col-lg-6">
+            <label>Buscador</label>
+            <input class="form-control" type="text" [(ngModel)]="Search" (input)="filterSearch()"/>
+          </div>
+          <div class="col-lg-6">
             <div class="form-group">
-              <select class="form-control" (change)="onChange($event)">
-                <option>Todo</option>
-                <option>Asesino</option>
-                <option>Tanque</option>
-                <option>Mago</option>
-                <option>Tirador</option>
-                <option>Soporte</option>
-                <option>Luchador</option>
+              <label>Roles</label>
+              <select class="form-control" (change)="onChange()" [(ngModel)]="Rol" >
+                <option *ngFor="let r of Roles" [ngValue]="r">{{r.Nombre}}</option>
               </select>
             </div>
           </div>
@@ -106,13 +104,33 @@
       </div>
       <div class="ibox-content">
 
+        <div class="row" *ngIf="Galeria">
+
+          <div class="col-lg-6">
+            <label>Buscador</label>
+            <input class="form-control" type="text" [(ngModel)]="Search" (input)="filterSearch()" />
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Roles</label>
+              <select class="form-control" (change)="onChange()" [(ngModel)]="Rol">
+                <option *ngFor="let r of Roles" [ngValue]="r">{{r.Nombre}}</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
 
         <div class="lightBoxGallery animated fadeInDown" *ngIf="Galeria">
+
           <hr />
           <label>Seleccione al campeón</label> <br />
           <a title="{{c.Nombre}}" *ngFor="let c of List"><img style="cursor:pointer" src="{{c.Avatar}}" width="50" height="50" (click)="selectErrorContraCampeon(c, Target)"></a>
           <hr />
 
+          <div class="form-group text-right">
+            <button class="btn btn-danger" type="button" (click)="cancel()" *ngIf="Galeria"> Cancelar</button>
+          </div>
         </div>
 
         <div class="form-group" *ngIf="!Galeria">

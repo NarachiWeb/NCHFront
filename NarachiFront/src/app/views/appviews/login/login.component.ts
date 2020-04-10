@@ -11,6 +11,7 @@ import { UserService } from '../../../services/user.service';
 export class LoginComponent {
 
   public UserLogin = new Login();
+  LoginFailed = false;
 
 
   constructor(private authService: AuthenticationService, private router: Router, private userService: UserService) {
@@ -24,7 +25,13 @@ export class LoginComponent {
       this.router.navigate(['Home']);
 
 
-    });
+    },
+
+      error => {
+        this.LoginFailed = true;
+      }
+
+    );
   }
 
 

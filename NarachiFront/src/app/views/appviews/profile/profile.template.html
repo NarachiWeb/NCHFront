@@ -1,21 +1,180 @@
-<div class="middle-box text-center loginscreen  animated fadeInDown">
-  <div class="contact-box">
-    <a class="row" href="profile.html">
+<div class="wrapper wrapper-content">
+  <div class="contact-box  animated fadeInDown" *ngIf="Page">
+    <div class="text-center">
+      <h2>{{Usuario.Nombre + ' ' + Usuario.Apellido}}</h2>
+      <div class="m-t-xs font-bold">Administrador</div>
+
+    </div>
+
+    <div class="row text-center">
       <div class="col-4">
         <div class="text-center">
           <img alt="image" class="rounded-circle m-t-xs img-fluid" src="{{Usuario.Avatar}}" width="120" height="120" style="border-radius: 50%">
-          <div class="m-t-xs font-bold">Graphics designer</div>
         </div>
       </div>
       <div class="col-8">
-        <h3><strong>{{Usuario.Nombre + ' ' + Usuario.Apellido}}</strong></h3>
-        <p><i class="fa fa-envelope"></i> {{Usuario.Correo}}</p>
-        <address>
-          <strong>Miembros desde</strong><br>
-          {{Usuario.FechaCreacion}}
-        
-        </address>
+
+
+        <br />
+        <div class="form-group">
+          <strong><i class="fa fa-envelope"></i> Contacto</strong>
+          {{Usuario.Correo}}
+        </div>
+
+        <div class="form-group">
+          <strong><i class="fa fa-birthday-cake"></i> Cumpleaños</strong>
+          {{transformFecha(Usuario.Edad)}} ({{getAgeByDate(Usuario.Edad)}})
+
+        </div>
+
+        <div class="form-group">
+          <strong><i class="fa fa-calendar"></i> Miembro desde</strong>
+          {{transformFecha(Usuario.FechaCreacion)}}
+        </div>
+
+
+
+
       </div>
-    </a>
+    </div>
+    <div class="form-group text-right">
+      <button class="btn btn-primary dim" type="button" (click)="openEdit()"><i class="fa fa-cog fa-2x"></i></button>
+    </div>
+
+  </div>
+
+  <div class="wrapper wrapper-content animated fadeInDown" *ngIf="Edit">
+    <div class="text-center">
+      <button class="btn btn-success dim" type="button" (click)="closeEdit()" *ngIf="Edit"> Regresar</button>
+    </div>
+
+    <div class="ibox-content">
+      <h3 style="text-transform: uppercase"><i class="fa fa-user-circle"></i> | INFORMACION DE {{Usuario.Username}} </h3>
+      <hr />
+
+      <div class="text-center">
+        <label>Avatar</label>
+        <div class="form-group">
+          <img alt="image" class="rounded-circle m-t-xs img-fluid" src="{{Usuario.Avatar}}" width="120" height="120" style="border-radius: 50%; cursor: pointer" (click)="avatarInput.click()">
+          <input #avatarInput (click)="cameraButton($event)" (change)="processFile(avatarInput)" type="file" name="pic" accept="image/*" style="-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)'; filter: alpha(opacity=0); -moz-opacity: 0; -khtml-opacity: 0; opacity: 0; width: 1px;">
+
+        </div>
+      </div>
+
+      <div class="row form-group">
+
+        <div class="col-lg-4 form-group">
+          <label>Nombre</label>
+          <input type="text" class="form-control" placeholder="Nombre" name="Usuario.Nombre" [(ngModel)]="Usuario.Nombre" />
+        </div>
+        <div class="col-lg-4 form-group">
+          <label>Apellido</label>
+          <input type="text" class="form-control" placeholder="Apellido" name="Usuario.Apellido" [(ngModel)]="Usuario.Apellido" />
+
+        </div>
+        <div class="col-lg-4 form-group">
+          <label>Correo</label>
+
+          <div class='input-group'>
+            <input type="text" class="form-control" placeholder="Correo" name="Usuario.Correo" [(ngModel)]="Usuario.Correo" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-envelope"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-group">
+
+        <div class="col-lg-4 form-group">
+          <label>Username</label>
+          <div class='input-group'>
+            <input type="text" class="form-control" placeholder="Nickname" name="Usuario.Nickname" [(ngModel)]="Usuario.Username" />
+            <span class="input-group-addon">
+              <span class="fa fa-tag"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-lg-4 form-group">
+          <label>Genero</label>
+          <select class="form-control" name="Usuario.Genero" [(ngModel)]="Usuario.Genero">
+            <option *ngFor="let g of Generos" [ngValue]="g.Id">{{g.Nombre}}</option>
+          </select>
+        </div>
+
+        <div class="col-lg-4 form-group">
+          <label>Fecha de nacimiento</label>
+          <div class='input-group'>
+            <input type="date" class="form-control" name="Usuario.Edad" (ngModelChange)="Usuario.Edad=$event" [ngModel]="Usuario.Edad | date:'yyyy-MM-dd'" />
+            <span class="input-group-addon">
+              <span class="fa fa-birthday-cake"></span>
+            </span>
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="form-group text-right">
+        <button class="btn btn-success " type="button" (click)="saveUser()">Guardar</button>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+  <div class="wrapper wrapper-content animated fadeInDown" *ngIf="Edit">
+    <div class="ibox-content">
+
+      <h3 style="text-transform: uppercase"><i class="fa fa-lock"></i> | SEGURIDAD </h3>
+      <hr />
+      <div class="row form-group">
+
+        <div class="col-lg-4 form-group">
+          <label>Clave actual</label>
+          <div class='input-group'>
+            <input type="password" class="form-control" placeholder="Clave Actual" name="User.Password" [(ngModel)]="User.Password" />
+            <span class="input-group-addon">
+              <span class="fa fa-key"></span>
+            </span>
+          </div>
+
+        </div>
+
+        <div class="col-lg-4 form-group">
+          <label>Nueva clave</label>
+          <div class='input-group'>
+            <input type="password" class="form-control" placeholder="Nueva clave" name="User.PasswordNew" [(ngModel)]="User.PasswordNew" />
+            <span class="input-group-addon">
+              <span class="fa fa-key"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-lg-4 form-group">
+          <label>Confirmar clave</label>
+          <div class='input-group'>
+            <input type="password" class="form-control" placeholder="Confirmar clave" name="User.Repeat" [(ngModel)]="User.Repeat" />
+            <span class="input-group-addon">
+              <span class="fa fa-key"></span>
+            </span>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div class="form-group text-right">
+        <button class="btn btn-success" type="button" (click)="changePassword()" [disabled]="!User.Password || !(User.PasswordNew == User.Repeat) || !(User.PasswordNew || User.Repeat)">Cambiar Clave</button>
+
+      </div>
+
+
+    </div>
+
   </div>
 </div>
