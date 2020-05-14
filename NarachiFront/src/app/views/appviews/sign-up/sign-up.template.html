@@ -2,8 +2,8 @@
   <div class="ibox-content">
 
     <div class="m-t" role="form" action="#">
-      <h2>Nueva cuenta</h2><br />
-
+      <h2>Registrarse en Narachi</h2>
+      <hr />
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Username" [(ngModel)]="Usuario.Username">
       </div>
@@ -11,7 +11,7 @@
         <input type="email" class="form-control" placeholder="Correo" [(ngModel)]="Usuario.Correo">
       </div>
       <div class="form-group">
-        <input type="email" class="form-control" placeholder="Contraseña" [(ngModel)]="Usuario.Password">
+        <input type="password" class="form-control" placeholder="Contraseña" [(ngModel)]="Usuario.Password">
       </div>
 
       <button type="submit" class="btn btn-primary block full-width m-b" (click)="Registrarse()">Registrarse</button>

@@ -12,5 +12,7 @@ export class Usuario {
     FechaEdicion: Date;
     Avatar: string;
     Edad: number;
+    RolId: string;
+    Privilegio: number;
 
 }

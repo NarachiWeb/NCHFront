@@ -4,13 +4,13 @@
 
     <div class="col-lg-4 animated fadeInUp" *ngFor="let t of Tipos">
       <div class="ibox-title">
-        {{t.Nombre}}
+        <h4> <i class="far fa-edit"></i> {{t.Nombre}}</h4>
       </div>
       <div class="ibox-content">
         <p style="height: 50px">
           {{t.Descripcion}}
         </p>
-        <button class="btn btn-primary dim" type="button" (click)="open(t.Id)"><i class="fa fa-plus"></i></button>
+        <button class="btn btn-success dim" type="button" (click)="open(t.Id)"><i class="fa fa-plus"></i></button>
       </div>
       <br />
 
@@ -29,10 +29,8 @@
         <div class=" form-group">
           <textarea type="text" rows="3" class="form-control" [(ngModel)]="Registro.Error"></textarea>
         </div>
-        <button class="btn btn-success" type="button" (click)="newRecord()"> Agregar</button>
+        <button class="btn btn-success" type="button" (click)="newRecord()"> Registrar</button>
         <button class="btn btn-danger" type="button" (click)="cancel()">Cancelar</button>
-        <div *ngIf="Success" class="text-success animated fadeInRight"><br /><label>Registro guardado con éxito <i class="fa fa-check"></i></label></div>
-        <div *ngIf="Error" class="text-error animated fadeInRight"><br /><label>Algo salió mal, intentelo de nuevo <i class="fa fa-times"></i></label></div>
 
       </div>
     </div>

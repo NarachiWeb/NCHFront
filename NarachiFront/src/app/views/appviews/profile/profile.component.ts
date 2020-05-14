@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { Usuario } from '../../../models/Usuario';
 import { DatePipe } from '@angular/common';
+import { AppService } from '../../../services/app.service';
+import { NotificationService } from '../../../services/notification.service';
 
 export class ChangePassword {
   Password: string;
@@ -16,15 +18,13 @@ export class ChangePassword {
 export class ProfileComponent {
 
   Usuario = new Usuario();
-  Page: boolean = true;
-  Edit: boolean = false;
   User = new ChangePassword();
 
 
   Generos: any[] = [{ "Id": 0, "Nombre": "Masculino" }, { "Id": 1, "Nombre": "Femenino"}];
 
 
-  constructor(private userService: UserService, private datePipe: DatePipe) {
+  constructor(private userService: UserService, private datePipe: DatePipe, private appService: AppService, private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -34,6 +34,7 @@ export class ProfileComponent {
   getProfile() {
     var User = JSON.parse(localStorage.getItem('profile'));
     this.Usuario = <Usuario>User;
+    console.log(this.Usuario);
   }
 
  
@@ -51,23 +52,20 @@ export class ProfileComponent {
     return age;
   }
 
-  openEdit() {
-    this.Page = false;
-    this.Edit = true;
-  }
-
-  closeEdit() {
-    this.Page = true;
-    this.Edit = false;
-    this.getProfile();
-  }
+ 
 
   saveUser() {
     this.userService.updateUser(this.Usuario).subscribe(us => {
 
       localStorage.removeItem('profile');
       localStorage.setItem('profile', JSON.stringify(this.Usuario));
-    
+      this.appService.setUsuario(this.Usuario);
+      this.notificationService.showDialog("success", "Perfil guardado con éxito.", 4000);
+
+
+    }, error => {
+        this.notificationService.showDialog("error", "Algo salió mal. Verifique los datos ingresados o intentelo más tarde.", 4000);
+
 
     });
   }

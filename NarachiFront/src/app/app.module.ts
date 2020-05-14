@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule} from "@angular/router";
 import {LocationStrategy, HashLocationStrategy, DatePipe} from '@angular/common';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import {ROUTES} from "./app.routes";
 import { AppComponent } from './app.component';
 import 'hammerjs';
@@ -21,6 +20,7 @@ import { JwtModule } from './jwt/jwt.module';
 import { RecordService } from './services/record.service';
 import { ChampionService } from './services/champion.service';
 import { RolesService } from './services/roles.service';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -28,15 +28,15 @@ import { RolesService } from './services/roles.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
     DashboardsModule,
     LayoutsModule,
     AppviewsModule,
     JwtModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+
   ],
-  providers: [AuthenticationService, AppService, UserService, RecordService, ChampionService, RolesService, DatePipe, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [AuthenticationService, AppService, UserService, RecordService, ChampionService, RolesService, NotificationService, DatePipe, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

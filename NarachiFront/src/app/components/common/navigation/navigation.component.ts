@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import 'jquery-slimscroll';
 import { Usuario } from '../../../models/Usuario';
+import { AppService } from '../../../services/app.service';
 
 declare var jQuery:any;
 
@@ -15,7 +16,7 @@ export class NavigationComponent {
   
   Usuario = new Usuario();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private appService: AppService) { }
 
   ngAfterViewInit() {
     jQuery('#side-menu').metisMenu();
@@ -28,6 +29,8 @@ export class NavigationComponent {
   }
 
   ngOnInit() {
+    this.appService.getUsuario().subscribe(user => this.Usuario = user);
+
     this.getProfile();
   }
 

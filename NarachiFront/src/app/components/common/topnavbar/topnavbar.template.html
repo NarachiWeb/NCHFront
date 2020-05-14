@@ -5,6 +5,20 @@
     
     </div>
     <ul class="nav navbar-top-links navbar-right">
+      
+      <li dropdown *ngIf="Usuario.Privilegio > 1">
+       
+          <a dropdownToggle >
+            <!--<span class="block m-t-xs"> <strong class="font-bold">{{Usuario.Nombre + ' ' + Usuario.Apellido}}</strong> </span>-->
+            <i class="fas fa-briefcase"></i>
+          </a>
+          <ul class="animated fadeInRight dropdown-menu" *dropdownMenu>
+            <li><a href="#"> Usuarios</a></li>
+            <li><a href="#"> Campeones</a></li>
+            <li><a href="#"> Registros</a></li>
+          </ul>
+      </li>
+
       <li>
         <a (click)="logOut()">
           <i class="fas fa-door-closed"></i> Salir

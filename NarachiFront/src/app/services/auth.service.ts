@@ -59,9 +59,16 @@ export class AuthenticationService {
     }
 
     setUser(user) {
-      localStorage.setItem('profile', JSON.stringify(user));
+      var us = JSON.stringify(user);
+
+      localStorage.setItem('profile', us);
+
+      var usuario = JSON.parse(us);
+      this.appService.setUsuario(usuario);
 
     }
+
+
 
 
 

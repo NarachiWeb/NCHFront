@@ -6,6 +6,7 @@ import { ChampionService } from '../../../services/champion.service';
 import { Registro } from '../../../models/Registro';
 import { RolesService } from '../../../services/roles.service';
 import { RolesDeCampeon } from '../../../models/RolesDeCampeon';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'addrecord',
@@ -30,7 +31,7 @@ export class AddRecordComponent {
   ErrorConCampeon: boolean = false;
   ErrorContraCampeon: boolean = false;
   Search: string;
-  constructor(private recordService: RecordService, private ChampionService: ChampionService, private rolesService: RolesService) {
+  constructor(private recordService: RecordService, private ChampionService: ChampionService, private rolesService: RolesService, private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -167,16 +168,15 @@ export class AddRecordComponent {
     this.recordService.SaveRecord(this.Registro).subscribe(
       us => {
 
-      this.Registro.Error = null;
-        this.Success = true;
-        const self = this;
-        setTimeout(function () { self.Success = false; }, 3000);
+        this.Registro.Error = null;
+
+        this.notificationService.showDialog("info", "Registro guardado con éxito.", 4000);
+
+
+        
             },
       error => {
-        this.Error = true;
-
-        const self = this;
-        setTimeout(function () { self.Error = false; }, 3000);
+        this.notificationService.showDialog("error", "Ups, algo salió mal. Vuelva a intentarlo o reintente más tarde.", 4000);
 
       }
 
