@@ -34,13 +34,14 @@ export class AuthenticationService {
            
                 // login successful if there's a jwt token in the response
             let token = res && res.token;
+            let user = res && res.user;
             let refreshToken = res && res.expiration;
 
 
                 if (token) {
 
                     this.setToken(token, refreshToken);
-                    this.getUsuario();
+                    this.setUser(user);
 
                     // return true to indicate successful login
                     return true;
@@ -57,10 +58,24 @@ export class AuthenticationService {
 
     }
 
+    setUser(user) {
+      var us = JSON.stringify(user);
+
+      localStorage.setItem('profile', us);
+
+      var usuario = JSON.parse(us);
+      this.appService.setUsuario(usuario);
+
+    }
+
+
+
+
+
     logOut(): void {
         this.token = null;
         localStorage.removeItem('currentUser');
-        this.appService.setUsuario(null);
+        localStorage.removeItem('profile');
     }
 
     refreshToken(): Observable<boolean> {
@@ -106,16 +121,6 @@ export class AuthenticationService {
 
     isLoggedIn(): boolean { return this.token != null; }
 
-    getUsuario() {
-        if (this.token == null) {
-            this.appService.setUsuario(null);
-            return;
-        }
-        let tok = this.token.split(".");
-        let user = JSON.parse(atob(tok[1]));
-        this.Usuario = <Usuario>user;
-        this.appService.setUsuario(this.Usuario);
 
-    }
 
 }

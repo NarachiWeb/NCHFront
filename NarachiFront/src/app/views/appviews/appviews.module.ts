@@ -8,22 +8,44 @@ import {PeityModule } from '../../components/charts/peity';
 import {SparklineModule } from '../../components/charts/sparkline';
 import { LoginComponent } from "./login/login.component";
 import { FormsModule } from "@angular/forms";
+import { SignUpComponent } from "./sign-up/sign-up.component";
+import { JwtModule } from "../../jwt/jwt.module";
+import { ProfileComponent } from "./profile/profile.component";
+import { AddRecordComponent } from "./records/addrecord.component";
+import { ListComponent } from "./records/list.component";
+import { IboxtoolsModule } from "../../components/common/iboxtools/iboxtools.module";
+//import { DemoMaterialModule } from "../../material/material-module";
 
 @NgModule({
   declarations: [
     StarterViewComponent,
     LoginComponent,
+    SignUpComponent,
+    ProfileComponent,
+    AddRecordComponent,
+    ListComponent,
+
   ],
   imports: [
+    JwtModule,
     BrowserModule,
     RouterModule,
     PeityModule,
     SparklineModule,
-    FormsModule
+    FormsModule,
+    IboxtoolsModule
+    //DemoMaterialModule,
+
   ],
   exports: [
     StarterViewComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent,
+    ProfileComponent,
+    AddRecordComponent,
+    ListComponent
+
+
   ],
 })
 

@@ -2,43 +2,36 @@
   <div class="sidebar-collapse">
     <ul class="nav metismenu" id="side-menu">
       <li class="nav-header">
-        <div class="profile-element" dropdown>
-          <img alt="image" class="img-circle" src="assets/images/profile_small.jpg">
-          <a dropdownToggle>
-            <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong> </span>
-            <span class="text-muted text-xs block">Art Director <b class="caret"></b> </span>
-          </a>
-          <ul class="animated fadeInRight dropdown-menu" *dropdownMenu>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Contacts</a></li>
-            <li><a href="#">Mailbox</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Logout</a></li>
-          </ul>
+        <div class="profile-element" dropdown [routerLink]="['/profile']">
+          <img alt="image" class="img-circle" src="{{Usuario.Avatar}}" width="60" height="60" *ngIf="Usuario.Avatar">
+          <i class="fa fa-user-circle fa-3x" *ngIf="!Usuario.Avatar" style="color: snow"></i>
+          <a *ngIf="Usuario.Nombre && Usuario.Apellido">      <span class="block m-t-xs"> <strong class="font-bold">{{Usuario.Nombre + ' ' + Usuario.Apellido}}</strong> </span></a>
+          <a *ngIf="!Usuario.Nombre || !Usuario.Apellido"><span class="block m-t-xs"><b>Completar Perfil <i class="fa fa-exclamation-circle"></i></b></span></a>
+          
         </div>
         <div class="logo-element">
-          IN+
+          <i class="fa fa-archive"></i>
         </div>
       </li>
-      <li [ngClass]="{active: activeRoute('starter')}">
-        <a [routerLink]="['/starterview']"><i class="fa fa-th-large"></i> <span class="nav-label">Perfil</span></a>
+      <li [ngClass]="{active: activeRoute('profile')}">
+        <a [routerLink]="['/profile']"><i class="fa fa-user-circle" aria-hidden="true"></i><span class="nav-label">Perfil</span></a>
       </li>
       <li [ngClass]="{active: activeRoute('dashboards')}">
-        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Registros</span> <span class="fa arrow"></span> </a>
+        <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Registros</span> <span class="fa arrow"></span> </a>
         <ul class="nav nav-second-level collapse" [ngClass]="{in: activeRoute('dashboards')}">
-          <li [ngClass]="{active: activeRoute('dashboard1')}"><a [routerLink]="['/dashboards/dashboard1']">Mis registros</a></li>
-          <li [ngClass]="{active: activeRoute('dashboard2')}"><a [routerLink]="['/dashboards/dashboard2']">Nuevo registro</a></li>
-          <li [ngClass]="{active: activeRoute('dashboard3')}"><a [routerLink]="['/dashboards/dashboard3']">Lista de registros</a></li>
+          <li [ngClass]="{active: activeRoute('/records/add')}"><a [routerLink]="['/records/add']">Nuevo registro</a></li>
+          <li [ngClass]="{active: activeRoute('/records/list')}"><a [routerLink]="['/records/list']">Lista de registros</a></li>
+          <!--<li><a [routerLink]="['/records/list']">Estadisticas</a></li>-->
         </ul>
       </li>
-      <li [ngClass]="{active: activeRoute('dashboards')}">
-        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Administración</span> <span class="fa arrow"></span> </a>
+      <!--<li [ngClass]="{active: activeRoute('dashboards')}">
+        <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Administración</span> <span class="fa arrow"></span> </a>
         <ul class="nav nav-second-level collapse" [ngClass]="{in: activeRoute('dashboards')}">
           <li [ngClass]="{active: activeRoute('dashboard1')}"><a [routerLink]="['/dashboards/dashboard1']">Usuarios</a></li>
           <li [ngClass]="{active: activeRoute('dashboard2')}"><a [routerLink]="['/dashboards/dashboard2']">Campeones</a></li>
           <li [ngClass]="{active: activeRoute('dashboard3')}"><a [routerLink]="['/dashboards/dashboard3']">Registros</a></li>
         </ul>
-      </li>
+      </li>-->
     </ul>
 
   </div>

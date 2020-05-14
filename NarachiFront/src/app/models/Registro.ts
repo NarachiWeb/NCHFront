@@ -9,4 +9,6 @@ export class Registro {
     EditadoEn: Date;
     TotalErrorConCampeon: string;
     TotalErrorContraCampeon: string;
+
+    Edit: boolean = false;
 }

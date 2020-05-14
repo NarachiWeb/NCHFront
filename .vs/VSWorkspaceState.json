@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\NarachiFront",
+    "\\NarachiFront\\src",
+    "\\NarachiFront\\src\\app",
+    "\\NarachiFront\\src\\app\\components",
+    "\\NarachiFront\\src\\app\\components\\common",
+    "\\NarachiFront\\src\\app\\components\\common\\topnavbar",
+    "\\NarachiFront\\src\\app\\views",
+    "\\NarachiFront\\src\\app\\views\\appviews",
+    "\\NarachiFront\\src\\app\\views\\appviews\\login"
+  ],
+  "SelectedNode": "\\NarachiFront\\src\\app\\app.component.html",
+  "PreviewInSolutionExplorer": false
+}

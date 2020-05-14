@@ -14,16 +14,19 @@ export class AppService {
     }
 
     setUsuario(user: Usuario) {
-        return this.Usuario.next(user);
+      localStorage.removeItem('profile');
+      localStorage.setItem('profile', JSON.stringify(user));
+
+
+      return this.Usuario.next(user);
     }
+
 
     getUsuario(): Observable<Usuario> {
 
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        let token = currentUser && currentUser.token;
-
-        return this.Usuario;
+      return this.Usuario;
     }
+
 
     removeDuplicates(originalArray, prop) {
         var newArray = [];

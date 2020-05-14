@@ -2,6 +2,7 @@ export class TipoDeRegistro {
     Id: string;
     Nombre: string;
     Descripcion: string;
+    Checked: boolean;
 }
 
 export enum TipoRegistro {

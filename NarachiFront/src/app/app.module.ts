@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {RouterModule} from "@angular/router";
-import {LocationStrategy, HashLocationStrategy} from '@angular/common';
-
+import {LocationStrategy, HashLocationStrategy, DatePipe} from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import {ROUTES} from "./app.routes";
 import { AppComponent } from './app.component';
-
+import 'hammerjs';
 // App views
 import {DashboardsModule} from "./views/dashboards/dashboards.module";
 import {AppviewsModule} from "./views/appviews/appviews.module";
@@ -16,21 +15,28 @@ import {AppviewsModule} from "./views/appviews/appviews.module";
 import {LayoutsModule} from "./components/common/layouts/layouts.module";
 import { AuthenticationService } from './services/auth.service';
 import { AppService } from './services/app.service';
+import { UserService } from './services/user.service';
+import { JwtModule } from './jwt/jwt.module';
+import { RecordService } from './services/record.service';
+import { ChampionService } from './services/champion.service';
+import { RolesService } from './services/roles.service';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
     DashboardsModule,
     LayoutsModule,
     AppviewsModule,
-    RouterModule.forRoot(ROUTES)
+    JwtModule,
+    RouterModule.forRoot(ROUTES),
+
   ],
-  providers: [AuthenticationService, AppService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [AuthenticationService, AppService, UserService, RecordService, ChampionService, RolesService, NotificationService, DatePipe, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
