@@ -5,6 +5,7 @@ import { ChampionService } from '../../../services/champion.service';
 import { Campeon } from '../../../models/Campeon';
 import { TipoDeRegistro } from '../../../models/TipoDeRegistro';
 import { NotificationService } from '../../../services/notification.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'list',
@@ -27,7 +28,7 @@ export class ListComponent {
   Bolt: boolean = false;
   Editing: boolean = false;
 
-  constructor(private recordService: RecordService, private campeonService: ChampionService, private notificationService: NotificationService) {
+  constructor(private recordService: RecordService, private campeonService: ChampionService, private notificationService: NotificationService, private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -50,7 +51,6 @@ export class ListComponent {
 
   getChampions() {
     this.campeonService.List().subscribe(us => {
-
       var Result = JSON.parse(us.text());
       this.Campeones = <Campeon[]>Result;
       this.List = this.Campeones;
@@ -180,10 +180,12 @@ export class ListComponent {
     });
   }
 
+  transformFecha(FechaNacimiento: Date): string {
+    return this.datePipe.transform(FechaNacimiento, "dd/MM/yyyy");
+  }
 
-
-  //selectRecord(registro: Registro) {
-  //  this.SelectedRecord = registro;
-  //  this.Editing = true;
-  //}
+  anyRecordEditing(): boolean {
+    var exp = this.Registros.find(x => x.Edit == true);
+    return (exp != null);
+  }
 }

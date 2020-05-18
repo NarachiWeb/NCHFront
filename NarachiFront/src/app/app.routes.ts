@@ -11,34 +11,18 @@ import {StarterViewComponent} from "./views/appviews/starterview.component";
 
 import {BlankLayoutComponent} from "./components/common/layouts/blankLayout.component";
 import {BasicLayoutComponent} from "./components/common/layouts/basicLayout.component";
-import {TopNavigationLayoutComponent} from "./components/common/layouts/topNavigationlayout.component";
 import { LoginComponent } from "./views/appviews/login/login.component";
 import { SignUpComponent } from "./views/appviews/sign-up/sign-up.component";
 import { ProfileComponent } from "./views/appviews/profile/profile.component";
 import { AddRecordComponent } from "./views/appviews/records/addrecord.component";
 import { ListComponent } from "./views/appviews/records/list.component";
+import { RecordsComponent } from "./views/appviews/admin/records.component";
+import { ChampionsComponent } from "./views/appviews/admin/champions.component";
 
 export const ROUTES:Routes = [
   // Main redirect
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 
-  // App views
-  {
-    path: 'dashboards', component: BasicLayoutComponent,
-    children: [
-      {path: 'dashboard1', component: Dashboard1Component},
-      {path: 'dashboard2', component: Dashboard2Component},
-      {path: 'dashboard3', component: Dashboard3Component},
-      {path: 'dashboard4', component: Dashboard4Component},
-      {path: 'dashboard5', component: Dashboard5Component}
-    ]
-  },
-  {
-    path: 'dashboards', component: TopNavigationLayoutComponent,
-    children: [
-      {path: 'dashboard41', component: Dashboard41Component}
-    ]
-  },
   {
     path: '', component: BasicLayoutComponent,
     children: [
@@ -73,7 +57,14 @@ export const ROUTES:Routes = [
       { path: 'dashboard5', component: Dashboard5Component }
     ]
   },
+  {
+    path: 'administration', component: BasicLayoutComponent,
+    children: [
+      { path: 'records', component: RecordsComponent, pathMatch: 'full' },
+      { path: 'champions', component: ChampionsComponent, pathMatch: 'full' },
+    ]
+  },
 
-   //Handle all other routes
-  {path: '**',  redirectTo: 'home'}
+  //Handle all other routes
+  { path: '**', redirectTo: 'home'}
 ];

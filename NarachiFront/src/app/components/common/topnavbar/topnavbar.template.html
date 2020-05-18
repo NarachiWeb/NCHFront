@@ -8,20 +8,21 @@
       
       <li dropdown *ngIf="Usuario.Privilegio > 1">
        
-          <a dropdownToggle >
+          <a dropdownToggle>
             <!--<span class="block m-t-xs"> <strong class="font-bold">{{Usuario.Nombre + ' ' + Usuario.Apellido}}</strong> </span>-->
             <i class="fas fa-briefcase"></i>
           </a>
-          <ul class="animated fadeInRight dropdown-menu" *dropdownMenu>
-            <li><a href="#"> Usuarios</a></li>
-            <li><a href="#"> Campeones</a></li>
-            <li><a href="#"> Registros</a></li>
+          <ul class="animated fadeInDown dropdown-menu" *dropdownMenu>
+            <li><a> <i class="fas fa-users"></i> Usuarios</a></li>
+            <li><a [routerLink]="['/administration/champions']"> <i class="fas fa-star"></i> Campeones</a></li>
+            <li><a [routerLink]="['/administration/records']"> <i class="fas fa-book-reader"></i> Registros</a></li>
+            <li><a [routerLink]="['/administration/records']"> <i class="far fa-newspaper"></i> Publicaciones</a></li>
           </ul>
       </li>
 
       <li>
         <a (click)="logOut()">
-          <i class="fas fa-door-closed"></i> Salir
+          <i class="fas fa-door-closed"></i> 
         </a>
       </li>
     </ul>

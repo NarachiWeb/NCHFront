@@ -36,7 +36,6 @@ export class TopNavbarComponent {
   }
 
   getProfile() {
-    debugger;
     var User = JSON.parse(localStorage.getItem('profile'));
     this.Usuario = <Usuario>User;
   }

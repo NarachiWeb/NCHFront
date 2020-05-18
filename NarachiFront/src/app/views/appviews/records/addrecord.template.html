@@ -58,7 +58,7 @@
         <div class="lightBoxGallery animated fadeInDown" *ngIf="Galeria">
           <hr />
           <label>Seleccione al campeón</label> <br />
-          <a title="{{c.Nombre}}" *ngFor="let c of List"><img style="cursor:pointer" src="{{c.Avatar}}" width="50" height="50" (click)="selectChampion(c)"></a>
+          <a title="{{c.Nombre}}" *ngFor="let c of List"><img style="cursor:pointer" src="assets/Champions/{{c.Nombre}}.png" width="50" height="50" (click)="selectChampion(c)"></a>
           <hr />
 
         </div>
@@ -68,7 +68,7 @@
 
             <div style="display: inline-flex" *ngIf="Campeon != null">
               <div class="form-group" (click)="Campeon = null">  <a class="btn btn-white btn-bitbucket"> <i class="fa fa-times"></i></a></div>
-              <div class="form-group" style="margin-left: 10px"> <img src="{{Campeon.Avatar}}" width="30" height="30" /> </div>
+              <div class="form-group" style="margin-left: 10px"> <img src="assets/Champions/{{Campeon.Nombre}}.png" width="30" height="30" /> </div>
               <div class="form-group" style="margin-left: 10px"><h2>{{Campeon.Nombre}}</h2> </div>
             </div>
 
@@ -123,7 +123,7 @@
 
           <hr />
           <label>Seleccione al campeón</label> <br />
-          <a title="{{c.Nombre}}" *ngFor="let c of List"><img style="cursor:pointer" src="{{c.Avatar}}" width="50" height="50" (click)="selectErrorContraCampeon(c, Target)"></a>
+          <a title="{{c.Nombre}}" *ngFor="let c of List"><img style="cursor:pointer" src="assets/Champions/{{c.Nombre}}.png" width="50" height="50" (click)="selectErrorContraCampeon(c, Target)"></a>
           <hr />
 
           <div class="form-group text-right">
@@ -135,7 +135,7 @@
           <div style="display: inline-flex">
             <a *ngIf="!Campeon" (click)="Galeria = true; Target = 'Campeon';">Elegir Campeon</a>
             <div class="form-group" (click)="Campeon = null" *ngIf="Campeon">  <a class="btn btn-white btn-bitbucket"> <i class="fa fa-times"></i></a></div>
-            <div class="form-group" style="margin-left: 10px" *ngIf="Campeon"> <img src="{{Campeon.Avatar}}" width="30" height="30" /> </div>
+            <div class="form-group" style="margin-left: 10px" *ngIf="Campeon"> <img src="assets/Champions/{{Campeon.Nombre}}.png" width="30" height="30" /> </div>
             <div class="form-group" style="margin-left: 10px" *ngIf="Campeon"> <h2>{{Campeon.Nombre}}</h2> </div>
           </div>
         </div>
@@ -144,7 +144,7 @@
           <div style="display: inline-flex">
             <a *ngIf="!Enemigo" (click)="Galeria = true; Target = 'Enemigo';">Elegir Enemigo</a>
             <div class="form-group" (click)="Enemigo = null" *ngIf="Enemigo">  <a class="btn btn-white btn-bitbucket"> <i class="fa fa-times"></i></a></div>
-            <div class="form-group" style="margin-left: 10px" *ngIf="Enemigo"> <img src="{{Enemigo.Avatar}}" width="30" height="30" /> </div>
+            <div class="form-group" style="margin-left: 10px" *ngIf="Enemigo"> <img src="assets/Champions/{{Enemigo.Nombre}}.png" width="30" height="30" /> </div>
             <div class="form-group" style="margin-left: 10px" *ngIf="Enemigo"> <h2>{{Enemigo.Nombre}}</h2> </div>
           </div>
         </div>

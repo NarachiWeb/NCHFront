@@ -14,6 +14,8 @@ import { ProfileComponent } from "./profile/profile.component";
 import { AddRecordComponent } from "./records/addrecord.component";
 import { ListComponent } from "./records/list.component";
 import { IboxtoolsModule } from "../../components/common/iboxtools/iboxtools.module";
+import { RecordsComponent } from "./admin/records.component";
+import { ChampionsComponent } from "./admin/champions.component";
 //import { DemoMaterialModule } from "../../material/material-module";
 
 @NgModule({
@@ -24,7 +26,8 @@ import { IboxtoolsModule } from "../../components/common/iboxtools/iboxtools.mod
     ProfileComponent,
     AddRecordComponent,
     ListComponent,
-
+    RecordsComponent,
+    ChampionsComponent
   ],
   imports: [
     JwtModule,
@@ -43,7 +46,10 @@ import { IboxtoolsModule } from "../../components/common/iboxtools/iboxtools.mod
     SignUpComponent,
     ProfileComponent,
     AddRecordComponent,
-    ListComponent
+    ListComponent,
+    RecordsComponent,
+    ChampionsComponent
+
 
 
   ],

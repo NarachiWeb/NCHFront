@@ -19,6 +19,8 @@ export class ProfileComponent {
 
   Usuario = new Usuario();
   User = new ChangePassword();
+  Profile = true;
+  ChangePass = false;
 
 
   Generos: any[] = [{ "Id": 0, "Nombre": "Masculino" }, { "Id": 1, "Nombre": "Femenino"}];
@@ -34,7 +36,6 @@ export class ProfileComponent {
   getProfile() {
     var User = JSON.parse(localStorage.getItem('profile'));
     this.Usuario = <Usuario>User;
-    console.log(this.Usuario);
   }
 
  
@@ -102,7 +103,16 @@ export class ProfileComponent {
 
   changePassword() {
 
-    this.userService.changePassword(this.User).subscribe(us => { });
+    this.userService.changePassword(this.User).subscribe(us => {
+      this.notificationService.showDialog("success", "Contraseña actualizada correctamente.", 4000);
+      this.User = new ChangePassword();
+    },
+
+      error => {
+        this.notificationService.showDialog("error", "Algo salió mal. Verifique los datos ingresados o intentelo más tarde.", 4000);
+}
+
+    );
 
 
   }

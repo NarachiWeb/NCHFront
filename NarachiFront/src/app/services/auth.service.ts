@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/Usuario';
 import { AppService } from './app.service';
+import { environment } from '../environments/environment';
 
 export interface IUser {
     Username: string;
@@ -28,8 +29,8 @@ export class AuthenticationService {
         //TODO configurar clientId y url
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-      
-        return this.http.post('https://localhost:44312/api/Usuario/Login', user, options).map((response: Response) => {
+
+        return this.http.post(environment.apiUrl + 'api/Usuario/Login', user, options).map((response: Response) => {
             let res = JSON.parse(response.text());
            
                 // login successful if there's a jwt token in the response
@@ -92,8 +93,8 @@ export class AuthenticationService {
         //let user = <IUser>{
         //    userName: userActual.username
         //}
-       
-        return this.http.post("https://localhost:44312/api/Usuario/RefreshToken", { username: userActual.username }, options).pipe(map((response: Response) => {
+
+       return this.http.post(environment.apiUrl + "api/Usuario/RefreshToken", { username: userActual.username }, options).pipe(map((response: Response) => {
             console.log('response', response);
             // login successful if there's a jwt token in the response
             let token = response.json() && response.json().Token;

@@ -21,6 +21,7 @@ import { RecordService } from './services/record.service';
 import { ChampionService } from './services/champion.service';
 import { RolesService } from './services/roles.service';
 import { NotificationService } from './services/notification.service';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { NotificationService } from './services/notification.service';
     RouterModule.forRoot(ROUTES),
 
   ],
-  providers: [AuthenticationService, AppService, UserService, RecordService, ChampionService, RolesService, NotificationService, DatePipe, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [AuthenticationService, AppService, UserService, RecordService, ChampionService, RolesService, NotificationService, DataService, DatePipe, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

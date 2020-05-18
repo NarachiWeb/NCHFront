@@ -4,14 +4,15 @@ import { JwtService } from '../jwt/jwt.service';
 import { Usuario } from '../models/Usuario';
 import { Observable } from 'rxjs/Observable';
 import { ChangePassword } from '../views/appviews/profile/profile.component';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class UserService {
 
-  private _userCreate = "https://localhost:44312/api/Usuario/Add";
-  private _getMyProfile = "https://localhost:44312/api/Usuario/MyProfile";
-  private _updateUser = "https://localhost:44312/api/Usuario/Update";
-  private _changePassword = "https://localhost:44312/api/Usuario/ChangePassword";
+  private _userCreate = environment.apiUrl + "api/Usuario/Add";
+  private _getMyProfile = environment.apiUrl + "api/Usuario/Get";
+  private _updateUser = environment.apiUrl + "api/Usuario/Update";
+  private _changePassword = environment.apiUrl + "api/Usuario/ChangePassword";
 
 
   constructor(private http: Http, private _jwt: JwtService ) {

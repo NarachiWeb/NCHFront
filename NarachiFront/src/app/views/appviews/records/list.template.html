@@ -25,7 +25,6 @@
 
           </div>
 
-          <!--<button class="btn btn-success" (click)="getRecordsByTypes()" [disabled]="checkSelectedTypes()">Buscar</button>-->
           <button class="btn btn-outline btn-success  dim" type="button" (click)="getRecordsByTypes()"><i class="fa fa-search"></i></button>
           <button class="btn btn-outline btn-success  dim" type="button" (click)="Bolt = !Bolt"><i class="fa fa-bolt" ></i></button>
 
@@ -111,7 +110,7 @@
 
         <div class="ibox-content" id="records">
 
-          <div class="spiner-example" style="height: 2px" *ngIf="Loading">
+          <div class="spiner-example" *ngIf="Loading">
             <div class="sk-spinner sk-spinner-three-bounce form-group" *ngIf="Loading">
               <div class="sk-bounce1" style="background-color: #1c84c6"></div>
               <div class="sk-bounce2" style="background-color: #1c84c6"></div>
@@ -129,29 +128,44 @@
                   <th class="text-center">Campeon</th>
                   <th class="text-center">Enemigo</th>
                   <th class="text-center">Registro</th>
+                  <th class="text-center" *ngIf="anyRecordEditing()"></th>
                   <th class="text-center"></th>
                   <th class="text-center"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let r of Registros" style="cursor: pointer;">
-                  <td width="1" class="text-center"> <img src="{{r.Campeon.Avatar}}" width="30" height="30" *ngIf="r.Campeon" /> <label *ngIf="!r.Campeon">—</label></td>
-                  <td width="1" class="text-center"> <img *ngIf="r.Enemigo" src="{{r.Enemigo.Avatar}}" width="30" height="30" /> <label *ngIf="!r.Enemigo">—</label></td>
+                  <td width="1" class="text-center">
+                    <div>
+
+                      <img src="assets/Champions/{{r.Campeon.Nombre}}.png" width="30" height="30" *ngIf="r.Campeon" />
+                      <label *ngIf="!r.Campeon">—</label>
+                    </div>
+                  </td>
+                  <td width="1" class="text-center"> <img *ngIf="r.Enemigo" src="assets/Champions/{{r.Enemigo.Nombre}}.png" width="30" height="30" /> <label *ngIf="!r.Enemigo">—</label></td>
                   <td>
 
+
                     <div *ngIf="!r.Edit">{{r.Error}}</div>
-                      
-                    <input class="form-control" [(ngModel)]="r.Error" *ngIf="r.Edit" type="text">
+                    <textarea class="form-control" [(ngModel)]="r.Error" *ngIf="r.Edit" type="text" rows="5"></textarea>
                   </td>
-                  <td width="1">
-                  <a class="btn btn-white btn-bitbucket" *ngIf="!r.Edit" (click)="r.Edit = true"> <i class="fas fa-pencil-alt"></i></a>
-                  <a class="btn btn-white btn-bitbucket" *ngIf="r.Edit" (click)="saveRecord(r)"> <i class="fas fa-check"></i></a>
-                  </td>
-                  <td width="1">
-                  <a class="btn btn-white btn-bitbucket" *ngIf="!r.Edit" (click)="deleteRecord(r.Id)"> <i class="fas fa-trash-alt"></i></a>
-                  <a class="btn btn-white btn-bitbucket" *ngIf="r.Edit" (click)="r.Edit = false"> <i class="fas fa-times"></i></a>
+                  <td *ngIf="anyRecordEditing()">
+                    <a class="btn btn-white btn-bitbucket" *ngIf="r.Privado" (click)="r.Privado = false"> <i class="fas fa-lock"></i></a>
+                    <a class="btn btn-white btn-bitbucket" *ngIf="!r.Privado" (click)="r.Privado = true"> <i class="fas fa-unlock"></i></a>
+
 
                   </td>
+                  <td width="1">
+                    <a class="btn btn-white btn-bitbucket" *ngIf="!r.Edit" (click)="r.Edit = true"> <i class="fas fa-pencil-alt"></i></a>
+                    <a class="btn btn-white btn-bitbucket" *ngIf="r.Edit" (click)="saveRecord(r)"> <i class="fas fa-check"></i></a>
+                  </td>
+                  <td width="1">
+                    <a class="btn btn-white btn-bitbucket" *ngIf="!r.Edit" (click)="deleteRecord(r.Id)"> <i class="fas fa-trash-alt"></i></a>
+                    <a class="btn btn-white btn-bitbucket" *ngIf="r.Edit" (click)="r.Edit = false"> <i class="fas fa-times"></i></a>
+
+                  </td>
+
+
                 </tr>
 
 
@@ -160,7 +174,7 @@
             </table>
           </div>
 
-          <div class="form-group text-center animated fadeInLeft" *ngIf="Registros.length == 0">
+          <div class="form-group text-center animated fadeInLeft" *ngIf="Registros.length == 0 && !Loading">
             <h2>No se han encontrado resultados</h2>
           </div>
 
