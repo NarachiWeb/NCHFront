@@ -34,7 +34,7 @@ export class ProfileComponent {
   }
 
   getProfile() {
-    var User = JSON.parse(localStorage.getItem('profile'));
+    var User = JSON.parse(localStorage.getItem('NarachiProfile'));
     this.Usuario = <Usuario>User;
   }
 
@@ -58,8 +58,8 @@ export class ProfileComponent {
   saveUser() {
     this.userService.updateUser(this.Usuario).subscribe(us => {
 
-      localStorage.removeItem('profile');
-      localStorage.setItem('profile', JSON.stringify(this.Usuario));
+      localStorage.removeItem('NarachiProfile');
+      localStorage.setItem('NarachiProfile', JSON.stringify(this.Usuario));
       this.appService.setUsuario(this.Usuario);
       this.notificationService.showDialog("success", "Perfil guardado con éxito.", 4000);
 

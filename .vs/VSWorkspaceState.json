@@ -4,10 +4,13 @@
     "\\NarachiFront",
     "\\NarachiFront\\src",
     "\\NarachiFront\\src\\app",
+    "\\NarachiFront\\src\\app\\components\\common",
     "\\NarachiFront\\src\\app\\views",
     "\\NarachiFront\\src\\app\\views\\appviews",
-    "\\NarachiFront\\src\\app\\views\\appviews\\records"
+    "\\NarachiFront\\src\\app\\views\\appviews\\records",
+    "\\NarachiFront\\src\\assets",
+    "\\NarachiFront\\src\\assets\\styles"
   ],
-  "SelectedNode": "\\NarachiFront\\src\\app\\views\\appviews\\records\\addrecord.template.html",
+  "SelectedNode": "\\NarachiFront\\src\\app\\material",
   "PreviewInSolutionExplorer": false
 }

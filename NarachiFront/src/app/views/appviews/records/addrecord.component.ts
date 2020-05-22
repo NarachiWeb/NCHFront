@@ -137,6 +137,8 @@ export class AddRecordComponent {
     this.Registro.CampeonId = this.Campeon.Id;
 
     this.Galeria = false;
+    this.Search = "";
+    this.filterSearch();
   }
 
 
@@ -153,6 +155,9 @@ export class AddRecordComponent {
     }
 
     this.Galeria = false;
+    this.Search = "";
+    this.filterSearch();
+
   }
 
 

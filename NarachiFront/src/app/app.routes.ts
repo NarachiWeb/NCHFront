@@ -18,13 +18,14 @@ import { AddRecordComponent } from "./views/appviews/records/addrecord.component
 import { ListComponent } from "./views/appviews/records/list.component";
 import { RecordsComponent } from "./views/appviews/admin/records.component";
 import { ChampionsComponent } from "./views/appviews/admin/champions.component";
+import { CanActivateViaAuthGuard } from "./guards/auth-guard-service";
 
 export const ROUTES:Routes = [
   // Main redirect
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 
   {
-    path: '', component: BasicLayoutComponent,
+    path: '', component: BasicLayoutComponent, canActivate: [CanActivateViaAuthGuard],
     children: [
       {path: 'home', component: StarterViewComponent}
     ]
@@ -32,7 +33,7 @@ export const ROUTES:Routes = [
   {
     path: '', component: BasicLayoutComponent,
     children: [
-      { path: 'profile', component: ProfileComponent }
+      { path: 'profile', component: ProfileComponent, canActivate: [CanActivateViaAuthGuard] }
     ]
   },
   {
@@ -48,17 +49,14 @@ export const ROUTES:Routes = [
     ]
   },
   {
-    path: 'records', component: BasicLayoutComponent,
+    path: 'records', component: BasicLayoutComponent, canActivate: [CanActivateViaAuthGuard],
     children: [
       { path: 'add', component: AddRecordComponent },
       { path: 'list', component: ListComponent },
-      { path: 'dashboard3', component: Dashboard3Component },
-      { path: 'dashboard4', component: Dashboard4Component },
-      { path: 'dashboard5', component: Dashboard5Component }
     ]
   },
   {
-    path: 'administration', component: BasicLayoutComponent,
+    path: 'administration', component: BasicLayoutComponent, canActivate: [CanActivateViaAuthGuard],
     children: [
       { path: 'records', component: RecordsComponent, pathMatch: 'full' },
       { path: 'champions', component: ChampionsComponent, pathMatch: 'full' },

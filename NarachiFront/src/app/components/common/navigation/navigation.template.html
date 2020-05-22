@@ -5,9 +5,9 @@
         <div class="profile-element" dropdown [routerLink]="['/profile']">
           <img alt="image" class="img-circle" src="{{Usuario.Avatar}}" width="50" height="50" *ngIf="Usuario.Avatar">
           <i class="fa fa-user-circle fa-3x" *ngIf="!Usuario.Avatar" style="color: snow"></i>
-          <a *ngIf="Usuario.Nombre && Usuario.Apellido">      <span class="block m-t-xs"> <strong class="font-bold">{{Usuario.Nombre + ' ' + Usuario.Apellido}}</strong> </span></a>
+          <a *ngIf="Usuario.Nombre && Usuario.Apellido">      <span class="block m-t-xs font-bold">{{Usuario.Nombre + ' ' + Usuario.Apellido}} </span></a>
           <a *ngIf="!Usuario.Nombre || !Usuario.Apellido"><span class="block m-t-xs"><b>Completar Perfil <i class="fa fa-exclamation-circle"></i></b></span></a>
-          
+
         </div>
         <div class="logo-element">
           <i class="fa fa-archive"></i>
@@ -21,7 +21,16 @@
         <ul class="nav nav-second-level collapse">
           <li [ngClass]="{active: activeRoute('/records/add')}"><a [routerLink]="['/records/add']">Nuevo registro</a></li>
           <li [ngClass]="{active: activeRoute('/records/list')}"><a [routerLink]="['/records/list']">Lista de registros</a></li>
-          <!--<li><a [routerLink]="['/records/list']">Estadisticas</a></li>-->
+        </ul>
+      </li>
+
+      <li [ngClass]="{active: activeRoute('administration')}">
+        <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Administración</span> <span class="fa arrow"></span> </a>
+        <ul class="nav nav-second-level collapse">
+          <li ><a [routerLink]="['/administration/champions']">Publicaciones</a></li>
+          <li [ngClass]="{active: activeRoute('/administration/champions')}"><a [routerLink]="['/administration/champions']">Campeones</a></li>
+          <li [ngClass]="{active: activeRoute('/administration/records')}"><a [routerLink]="['/administration/records']">Registros</a></li>
+          <li ><a [routerLink]="['/administration/records']">Usuarios</a></li>
         </ul>
       </li>
     </ul>

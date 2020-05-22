@@ -26,31 +26,26 @@ export class AuthenticationService {
 
     login(user: IUser): Observable<boolean> {
 
-        //TODO configurar clientId y url
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
         return this.http.post(environment.apiUrl + 'api/Usuario/Login', user, options).map((response: Response) => {
-            let res = JSON.parse(response.text());
-           
-                // login successful if there's a jwt token in the response
+
+          let res = JSON.parse(response.text());          
             let token = res && res.token;
             let user = res && res.user;
             let refreshToken = res && res.expiration;
 
+            if (token) {
 
-                if (token) {
+                this.setToken(token, refreshToken);
+                this.setUser(user);
+                return true;
+            }
 
-                    this.setToken(token, refreshToken);
-                    this.setUser(user);
+            return false;
 
-                    // return true to indicate successful login
-                    return true;
-                } else {
-                    // return false to indicate failed login
-                    return false;
-                }
-            });
+        });
     }
 
     setToken(token, refreshToken) {
@@ -62,7 +57,7 @@ export class AuthenticationService {
     setUser(user) {
       var us = JSON.stringify(user);
 
-      localStorage.setItem('profile', us);
+      localStorage.setItem('NarachiProfile', us);
 
       var usuario = JSON.parse(us);
       this.appService.setUsuario(usuario);
@@ -76,45 +71,38 @@ export class AuthenticationService {
     logOut(): void {
         this.token = null;
         localStorage.removeItem('currentUser');
-        localStorage.removeItem('profile');
+      localStorage.removeItem('NarachiProfile');
     }
 
     refreshToken(): Observable<boolean> {
-        //TODO configurar clientId y url
+      debugger;
         let headers = new Headers({ 'Content-Type': 'application/json' });
         headers.append('Authorization', 'Bearer ' + this.token);
 
         let options = new RequestOptions({ headers: headers });
-        let userActual = JSON.parse(localStorage.getItem('currentUser'));
+      let userActual = JSON.parse(localStorage.getItem('NarachiProfile'));
 
         let body = new URLSearchParams();
 
-        body.set('currentUser', userActual.username);
-        //let user = <IUser>{
-        //    userName: userActual.username
-        //}
+      body.set('NarachiProfile', userActual.Username);
 
-       return this.http.post(environment.apiUrl + "api/Usuario/RefreshToken", { username: userActual.username }, options).pipe(map((response: Response) => {
-            console.log('response', response);
-            // login successful if there's a jwt token in the response
-            let token = response.json() && response.json().Token;
-            let refreshToken = response.json() && response.json().Expiration;
+      var fakePassword = (this.S4() + this.S4() + "-" + this.S4() + "-4" + this.S4().substr(0, 3) + "-" + this.S4() + "-" + this.S4() + this.S4() + this.S4()).toLowerCase();
+
+      return this.http.post(environment.apiUrl + "api/Usuario/RefreshToken", { username: userActual.Username, password: fakePassword }, options).pipe(map((response: Response) => {
+
+          let token = response.json() && response.json().token;
+          let refreshToken = response.json() && response.json().expiration;
 
 
-            if (token) {
-                // set token property
-                this.token = token;
+          if (token) {
+              this.token = token;
+              localStorage.setItem('currentUser', JSON.stringify({ username: userActual.Username, token: token, refreshToken: refreshToken }));
+              return true;
+          }
 
-                // store username and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify({ username: userActual.username, token: token, refreshToken: refreshToken }));
+          return false;
 
-                // return true to indicate successful login
-                return true;
-            } else {
-                // return false to indicate failed login
-                return false;
-            }
-        }));//...errors if)
+       }));
             
        
 
@@ -122,6 +110,8 @@ export class AuthenticationService {
 
     isLoggedIn(): boolean { return this.token != null; }
 
-
+    S4() {
+      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    }
 
 }

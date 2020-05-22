@@ -35,11 +35,13 @@ export class NavigationComponent {
   }
 
   activeRoute(routename: string): boolean{
-    return this.router.url.indexOf(routename) > -1;
+    console.log(routename);
+    debugger;
+    return this.router.url == routename;
   }
 
   getProfile() {
-    var User = JSON.parse(localStorage.getItem('profile'));
+    var User = JSON.parse(localStorage.getItem('NarachiProfile'));
     this.Usuario = <Usuario>User;
   }
 }
