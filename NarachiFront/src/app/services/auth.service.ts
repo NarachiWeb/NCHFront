@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../models/Usuario';
 import { AppService } from './app.service';
 import { environment } from '../environments/environment';
+import { JwtService } from '../jwt/jwt.service';
 
 export interface IUser {
     Username: string;
@@ -18,7 +19,7 @@ export class AuthenticationService {
     public token: string;
     public Usuario: Usuario;
 
-    constructor(private http: Http, private appService: AppService) {
+  constructor(private http: Http, private appService: AppService) {
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.token = currentUser && currentUser.token;
 
@@ -55,8 +56,10 @@ export class AuthenticationService {
     }
 
     setUser(user) {
-      var us = JSON.stringify(user);
+      debugger;
 
+      var us = JSON.stringify(user);
+      //us.Privilegio = this.jwtService.getPrivilege();
       localStorage.setItem('NarachiProfile', us);
 
       var usuario = JSON.parse(us);

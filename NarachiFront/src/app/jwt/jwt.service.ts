@@ -200,6 +200,14 @@ export class JwtService extends Http {
         return JSON.parse(window.atob(base64));
     }
 
+    public getPrivilege(): number {
+
+      var data = this.parseToken();
+      var privilege = data["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+      return +privilege;
+
+    }
+
     private IsTokenExpired(): boolean {
         let user = JSON.parse(localStorage.getItem('currentUser'));
         //console.log(user);

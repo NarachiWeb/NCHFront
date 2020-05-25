@@ -26,7 +26,7 @@ export class ProfileComponent {
   Generos: any[] = [{ "Id": 0, "Nombre": "Masculino" }, { "Id": 1, "Nombre": "Femenino"}];
 
 
-  constructor(private userService: UserService, private datePipe: DatePipe, private appService: AppService, private notificationService: NotificationService) {
+  constructor(private userService: UserService, private appService: AppService, private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -39,9 +39,7 @@ export class ProfileComponent {
   }
 
  
-  transformFecha(FechaNacimiento: Date): string {
-    return this.datePipe.transform(FechaNacimiento, "dd/MM/yyyy");
-  }
+  
 
   getAgeByDate(date: any): number {
 

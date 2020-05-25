@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class RolesService {
 
-  private _getRoles = environment.apiUrl + "api/Roles/GetRoles";
+  private _getRoles = environment.apiUrl + "api/Roles/List";
 
 
   constructor(private http: Http, private _jwt: JwtService) {

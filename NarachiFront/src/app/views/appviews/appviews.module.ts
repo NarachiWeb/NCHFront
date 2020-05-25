@@ -16,6 +16,9 @@ import { ListComponent } from "./records/list.component";
 import { IboxtoolsModule } from "../../components/common/iboxtools/iboxtools.module";
 import { RecordsComponent } from "./admin/records.component";
 import { ChampionsComponent } from "./admin/champions.component";
+import { UsersComponent } from "./admin/users.component";
+import { NewsComponent } from "./admin/news.component";
+import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
 //import { DemoMaterialModule } from "../../material/material-module";
 
 @NgModule({
@@ -27,7 +30,9 @@ import { ChampionsComponent } from "./admin/champions.component";
     AddRecordComponent,
     ListComponent,
     RecordsComponent,
-    ChampionsComponent
+    ChampionsComponent,
+    UsersComponent,
+    NewsComponent
   ],
   imports: [
     JwtModule,
@@ -36,7 +41,10 @@ import { ChampionsComponent } from "./admin/champions.component";
     PeityModule,
     SparklineModule,
     FormsModule,
-    IboxtoolsModule
+    IboxtoolsModule,
+    BsDropdownModule.forRoot(),
+    PaginationModule.forRoot()
+
     //DemoMaterialModule,
 
   ],
@@ -48,7 +56,10 @@ import { ChampionsComponent } from "./admin/champions.component";
     AddRecordComponent,
     ListComponent,
     RecordsComponent,
-    ChampionsComponent
+    ChampionsComponent,
+    UsersComponent,
+    NewsComponent
+
 
 
 

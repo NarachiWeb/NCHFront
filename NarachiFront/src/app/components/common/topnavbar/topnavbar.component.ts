@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { AppService } from '../../../services/app.service';
 import { Usuario } from '../../../models/Usuario';
+import { JwtService } from '../../../jwt/jwt.service';
 declare var jQuery:any;
 
 @Component({
@@ -13,8 +14,9 @@ declare var jQuery:any;
 export class TopNavbarComponent {
 
   Usuario = new Usuario();
+  
 
-  constructor(private authService: AuthenticationService, private router: Router, private appService: AppService) {
+  constructor(private authService: AuthenticationService, private router: Router, private appService: AppService, private jwtService: JwtService) {
 
   }
 
@@ -38,6 +40,9 @@ export class TopNavbarComponent {
   getProfile() {
     var User = JSON.parse(localStorage.getItem('profile'));
     this.Usuario = <Usuario>User;
+
   }
+
+
 
 }

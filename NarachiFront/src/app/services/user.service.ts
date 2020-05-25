@@ -13,6 +13,7 @@ export class UserService {
   private _getMyProfile = environment.apiUrl + "api/Usuario/Get";
   private _updateUser = environment.apiUrl + "api/Usuario/Update";
   private _changePassword = environment.apiUrl + "api/Usuario/ChangePassword";
+  private _list = environment.apiUrl + "api/Usuario/List";
 
 
   constructor(private http: Http, private _jwt: JwtService ) {
@@ -33,5 +34,9 @@ export class UserService {
 
   changePassword(user: ChangePassword) {
     return this._jwt.post(this._changePassword, user);
+  }
+
+  list() {
+    return this._jwt.get(this._list);
   }
 } 

@@ -4,13 +4,13 @@
     "\\NarachiFront",
     "\\NarachiFront\\src",
     "\\NarachiFront\\src\\app",
+    "\\NarachiFront\\src\\app\\components",
     "\\NarachiFront\\src\\app\\components\\common",
+    "\\NarachiFront\\src\\app\\components\\map",
     "\\NarachiFront\\src\\app\\views",
     "\\NarachiFront\\src\\app\\views\\appviews",
-    "\\NarachiFront\\src\\app\\views\\appviews\\records",
-    "\\NarachiFront\\src\\assets",
-    "\\NarachiFront\\src\\assets\\styles"
+    "\\NarachiFront\\src\\app\\views\\appviews\\admin"
   ],
-  "SelectedNode": "\\NarachiFront\\src\\app\\material",
+  "SelectedNode": "\\NarachiFront\\src\\app\\views\\appviews\\appviews.module.ts",
   "PreviewInSolutionExplorer": false
 }

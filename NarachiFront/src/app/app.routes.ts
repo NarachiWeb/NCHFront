@@ -19,6 +19,9 @@ import { ListComponent } from "./views/appviews/records/list.component";
 import { RecordsComponent } from "./views/appviews/admin/records.component";
 import { ChampionsComponent } from "./views/appviews/admin/champions.component";
 import { CanActivateViaAuthGuard } from "./guards/auth-guard-service";
+import { UsersComponent } from "./views/appviews/admin/users.component";
+import { NewsComponent } from "./views/appviews/admin/news.component";
+import { RoleGuardService } from "./guards/role-guard-service";
 
 export const ROUTES:Routes = [
   // Main redirect
@@ -56,10 +59,12 @@ export const ROUTES:Routes = [
     ]
   },
   {
-    path: 'administration', component: BasicLayoutComponent, canActivate: [CanActivateViaAuthGuard],
+    path: 'administration', component: BasicLayoutComponent,
     children: [
-      { path: 'records', component: RecordsComponent, pathMatch: 'full' },
-      { path: 'champions', component: ChampionsComponent, pathMatch: 'full' },
+      { path: 'records', component: RecordsComponent, pathMatch: 'full', data: { expectedPrivilege: '2' }, canActivate: [RoleGuardService] },
+      { path: 'champions', component: ChampionsComponent, pathMatch: 'full', data: { expectedPrivilege: '3' }, canActivate: [RoleGuardService] },
+      { path: 'users', component: UsersComponent, pathMatch: 'full', data: { expectedPrivilege: '3' }, canActivate: [RoleGuardService] },
+      { path: 'news', component: NewsComponent, pathMatch: 'full', data: { expectedPrivilege: '4' }, canActivate: [RoleGuardService] },
     ]
   },
 

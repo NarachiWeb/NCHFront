@@ -24,13 +24,13 @@
         </ul>
       </li>
 
-      <li [ngClass]="{active: activeRoute('administration')}">
-        <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Administración</span> <span class="fa arrow"></span> </a>
+      <li [ngClass]="{active: activeRoute('administration')}" *ngIf="Privilegio >= 2">
+        <a href="#"><i class="fas fa-briefcase"></i> <span class="nav-label">Administración</span> <span class="fa arrow"></span> </a>
         <ul class="nav nav-second-level collapse">
-          <li ><a [routerLink]="['/administration/champions']">Publicaciones</a></li>
-          <li [ngClass]="{active: activeRoute('/administration/champions')}"><a [routerLink]="['/administration/champions']">Campeones</a></li>
-          <li [ngClass]="{active: activeRoute('/administration/records')}"><a [routerLink]="['/administration/records']">Registros</a></li>
-          <li ><a [routerLink]="['/administration/records']">Usuarios</a></li>
+          <li [ngClass]="{active: activeRoute('/administration/news')}" *ngIf="Privilegio >= 4"><a [routerLink]="['/administration/news']">Publicaciones</a></li>
+          <li [ngClass]="{active: activeRoute('/administration/champions')}" *ngIf="Privilegio >= 3"><a [routerLink]="['/administration/champions']">Campeones</a></li>
+          <li [ngClass]="{active: activeRoute('/administration/records')}" *ngIf="Privilegio >= 2"><a [routerLink]="['/administration/records']">Registros</a></li>
+          <li [ngClass]="{active: activeRoute('/administration/users')}" *ngIf="Privilegio >= 3"><a [routerLink]="['/administration/users']">Usuarios</a></li>
         </ul>
       </li>
     </ul>

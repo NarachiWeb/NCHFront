@@ -23,6 +23,8 @@ import { RolesService } from './services/roles.service';
 import { NotificationService } from './services/notification.service';
 import { DataService } from './services/data.service';
 import { CanActivateViaAuthGuard } from './guards/auth-guard-service';
+import { JwtService } from './jwt/jwt.service';
+import { RoleGuardService } from './guards/role-guard-service';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,7 @@ import { CanActivateViaAuthGuard } from './guards/auth-guard-service';
     RouterModule.forRoot(ROUTES),
 
   ],
-  providers: [AuthenticationService, AppService, UserService, RecordService, ChampionService, RolesService, NotificationService, DataService, CanActivateViaAuthGuard, DatePipe, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [AuthenticationService, AppService, UserService, RecordService, ChampionService, RolesService, NotificationService, DataService, CanActivateViaAuthGuard, RoleGuardService, DatePipe, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
