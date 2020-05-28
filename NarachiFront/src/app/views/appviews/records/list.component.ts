@@ -111,7 +111,6 @@ export class ListComponent {
   updateRecord(registro: Registro) {
 
     this.recordService.UpdateRecord(registro).subscribe(us => {
-      registro.Edit = false;
      this.notificationService.showDialog("success", "Registro editado con éxito.", 4000);
     });
   }
@@ -148,9 +147,9 @@ export class ListComponent {
 
   searchRecordsByChampions() {
     var Ids = this.SearchCampeones.filter(x => x.Id).map(x => x.Id);
-
+    this.Loading = true;
     this.recordService.ListByIds(Ids).subscribe(us => {
-
+      this.Loading = false;
       var Result = JSON.parse(us.text());
       this.Registros = <Registro[]>Result;
 
@@ -161,8 +160,5 @@ export class ListComponent {
     return this.datePipe.transform(FechaNacimiento, "dd/MM/yyyy");
   }
 
-  anyRecordEditing(): boolean {
-    var exp = this.Registros.find(x => x.Edit == true);
-    return (exp != null);
-  }
+
 }

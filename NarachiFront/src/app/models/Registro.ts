@@ -7,7 +7,6 @@ export class Registro {
     TipoDeRegistro: string;
     CreadoEn: Date;
     EditadoEn: Date;
-    Privado: boolean;
+    Privado: boolean = true;
 
-    Edit: boolean = false;
 }

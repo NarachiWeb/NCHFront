@@ -62,8 +62,8 @@ export class ChampionsComponent {
   updateChampion() {
     this.championService.UpdateChampion(this.Campeon).subscribe(us =>
     {
-      //this.notificationService.showDialog("info", "Campeón actualizado con éxito.", 3000);
-      this.notificationService.showDialog("error", "Ups, algo salió mal.", 3000);
+      this.notificationService.showDialog("info", "Campeón actualizado con éxito.", 3000);
+
 
     },
       error => {

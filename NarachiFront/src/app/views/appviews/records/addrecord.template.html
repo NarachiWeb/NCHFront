@@ -29,6 +29,17 @@
         <div class=" form-group">
           <textarea type="text" rows="3" class="form-control" [(ngModel)]="Registro.Error"></textarea>
         </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-group" type="checkbox" (change)="Registro.Privado = !Registro.Privado" [checked]="Registro.Privado" />
+            <label class="form-check-label">Registro Privado
+            <i class="fa fa-lock" *ngIf="Registro.Privado"></i>
+            <i class="fa fa-unlock" *ngIf="!Registro.Privado"></i>
+
+            </label>
+          </div>
+
+        </div>
         <button class="btn btn-success" type="button" (click)="newRecord()"> Registrar</button>
         <button class="btn btn-danger" type="button" (click)="cancel()">Cancelar</button>
 
@@ -76,11 +87,22 @@
 
             <div class="form-group"> <textarea type="text" rows="3" class="form-control" [(ngModel)]="Registro.Error" [disabled]="!Campeon"></textarea></div>
 
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-group" type="checkbox" (change)="Registro.Privado = !Registro.Privado" [checked]="Registro.Privado" />
+                <label class="form-check-label">
+                  Registro Privado
+                  <i class="fa fa-lock" *ngIf="Registro.Privado"></i>
+                  <i class="fa fa-unlock" *ngIf="!Registro.Privado"></i>
+
+
+                </label>
+              </div>
+
+            </div>
+
             <button class="btn btn-success" type="button" (click)="newRecord()" [disabled]="!Campeon"> Registrar</button>
             <button class="btn btn-danger" type="button" (click)="cancel()"> Cancelar</button>
-            <div *ngIf="Success" class="text-success animated fadeInRight"><br /><label>Registro guardado con éxito <i class="fa fa-check"></i></label></div>
-            <div *ngIf="Error" class="text-error animated fadeInRight"><br /><label>Algo salió mal, intentelo de nuevo <i class="fa fa-times"></i></label></div>
-
           </div>
 
 
@@ -156,10 +178,20 @@
           <div class=" form-group">
             <textarea type="text" rows="3" class="form-control" [(ngModel)]="Registro.Error" [disabled]="!Campeon || !Enemigo"></textarea>
           </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-group" type="checkbox" (change)="Registro.Privado = !Registro.Privado" [checked]="Registro.Privado" />
+              <label class="form-check-label">
+                Registro Privado
+                <i class="fa fa-lock" *ngIf="Registro.Privado"></i>
+                <i class="fa fa-unlock" *ngIf="!Registro.Privado"></i>
+
+
+              </label>
+            </div>
+          </div>
           <button class="btn btn-success" type="button" (click)="newRecord()" [disabled]="!Campeon || !Enemigo"> Registrar</button>
           <button class="btn btn-danger" type="button" (click)="cancel()"> Cancelar</button>
-          <div *ngIf="Success" class="text-success animated fadeInRight"><br /><label>Registro guardado con éxito <i class="fa fa-check"></i></label></div>
-          <div *ngIf="Error" class="text-error animated fadeInRight"><br /><label>Algo salió mal, intentelo de nuevo <i class="fa fa-times"></i></label></div>
 
         </div>
       </div>

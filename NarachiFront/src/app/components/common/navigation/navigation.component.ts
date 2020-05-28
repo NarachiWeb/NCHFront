@@ -4,6 +4,7 @@ import 'jquery-slimscroll';
 import { Usuario } from '../../../models/Usuario';
 import { AppService } from '../../../services/app.service';
 import { JwtService } from '../../../jwt/jwt.service';
+import { AuthenticationService } from '../../../services/auth.service';
 
 declare var jQuery:any;
 
@@ -18,7 +19,7 @@ export class NavigationComponent {
   Usuario = new Usuario();
   Privilegio: number;
 
-  constructor(private router: Router, private appService: AppService, private jwtService: JwtService) { }
+  constructor(private router: Router, private appService: AppService, private jwtService: JwtService, private authService: AuthenticationService) { }
 
   ngAfterViewInit() {
     jQuery('#side-menu').metisMenu();
@@ -47,5 +48,10 @@ export class NavigationComponent {
 
   }
 
+  logOut() {
+    this.authService.logOut();
+    this.router.navigate(['login']);
+
+  }
   
 }

@@ -13,8 +13,7 @@
           <i class="fa fa-archive"></i>
         </div>
       </li>
-      <li [ngClass]="{active: activeRoute('profile')}">
-        <a [routerLink]="['/profile']"><i class="fa fa-user-circle" aria-hidden="true"></i><span class="nav-label">Perfil</span></a>
+      <li [ngClass]="{active: activeRoute('profile')}"> <a [routerLink]="['/profile']"><i class="fa fa-user-circle" aria-hidden="true"></i><span class="nav-label">Perfil</span></a>
       </li>
       <li [ngClass]="{active: activeRoute('records')}">
         <a href="#"><i class="fa fa-book"></i> <span class="nav-label">Registros</span> <span class="fa arrow"></span> </a>
@@ -32,6 +31,9 @@
           <li [ngClass]="{active: activeRoute('/administration/records')}" *ngIf="Privilegio >= 2"><a [routerLink]="['/administration/records']">Registros</a></li>
           <li [ngClass]="{active: activeRoute('/administration/users')}" *ngIf="Privilegio >= 3"><a [routerLink]="['/administration/users']">Usuarios</a></li>
         </ul>
+      </li>
+      <li (click)="logOut()">
+        <a><i class="fas fa-door-closed"></i> <span class="nav-label"> Salir</span> </a>
       </li>
     </ul>
 

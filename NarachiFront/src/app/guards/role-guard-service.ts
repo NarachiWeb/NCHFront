@@ -12,7 +12,6 @@ export class RoleGuardService implements CanActivate {
     if (this.auth.isLoggedIn()) {
 
       let expectedPrivilege = +route.data.expectedPrivilege;
-      console.log(expectedPrivilege);
       var privilege = this.jwtService.getPrivilege();
       if (!(privilege >= expectedPrivilege)) {
         this.router.navigate(['home']);

@@ -56,7 +56,6 @@ export class AuthenticationService {
     }
 
     setUser(user) {
-      debugger;
 
       var us = JSON.stringify(user);
       //us.Privilegio = this.jwtService.getPrivilege();

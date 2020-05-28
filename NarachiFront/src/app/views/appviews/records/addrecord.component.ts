@@ -24,8 +24,6 @@ export class AddRecordComponent {
   Rol: RolesDeCampeon;
   Target: string;
 
-  Success: boolean = false;
-  Error: boolean = false;
   Galeria: boolean = false;
   Anotacion: boolean = false;
   ErrorConCampeon: boolean = false;
@@ -112,8 +110,6 @@ export class AddRecordComponent {
     this.Campeon = null;
     this.Enemigo = null;
     this.Registro = new Registro();
-    this.Success = false;
-    this.Error = false;
     this.Search = "";
   }
 
@@ -167,8 +163,6 @@ export class AddRecordComponent {
 
   newRecord() {
 
-    this.Success = false;
-    this.Error = false;
 
     this.recordService.SaveRecord(this.Registro).subscribe(
       us => {

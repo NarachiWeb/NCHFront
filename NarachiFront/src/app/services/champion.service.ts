@@ -12,8 +12,8 @@ import { environment } from '../environments/environment';
 export class ChampionService {
 
     private _getChampions = environment.apiUrl + "api/Campeon/List";
-    private _updateChampion = environment.apiUrl + "/api/Campeon/Update";
-    private _deleteChampion = environment.apiUrl + "/api/Campeon/Delete";
+    private _updateChampion = environment.apiUrl + "api/Campeon/Update";
+    private _deleteChampion = environment.apiUrl + "api/Campeon/Delete";
 
     constructor(private _jwt: JwtService) {
 

@@ -14,6 +14,7 @@ export class UserService {
   private _updateUser = environment.apiUrl + "api/Usuario/Update";
   private _changePassword = environment.apiUrl + "api/Usuario/ChangePassword";
   private _list = environment.apiUrl + "api/Usuario/List";
+  private _roles = environment.apiUrl + "api/Usuario/Roles";
 
 
   constructor(private http: Http, private _jwt: JwtService ) {
@@ -39,4 +40,10 @@ export class UserService {
   list() {
     return this._jwt.get(this._list);
   }
+
+  getRoles() {
+    return this._jwt.get(this._roles);
+  }
+
+
 } 
