@@ -5,6 +5,7 @@ import { ChampionService } from '../../../services/champion.service';
 import { Campeon } from '../../../models/Campeon';
 import { TipoDeRegistro } from '../../../models/TipoDeRegistro';
 import { NotificationService } from '../../../services/notification.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'list',
@@ -21,13 +22,13 @@ export class ListComponent {
   TipoRegistro = new TipoDeRegistro();
   Show = false;
   Loading = false;
-  SelectedRecord: Registro;
+  SelectedRecord = new Registro();
   SearchCampeones = new Array<Campeon>();
   Search: string;
   Bolt: boolean = false;
   Editing: boolean = false;
 
-  constructor(private recordService: RecordService, private campeonService: ChampionService, private notificationService: NotificationService) {
+  constructor(private recordService: RecordService, private campeonService: ChampionService, private notificationService: NotificationService, private datePipe: DatePipe) {
   }
 
   ngOnInit() {
@@ -50,7 +51,6 @@ export class ListComponent {
 
   getChampions() {
     this.campeonService.List().subscribe(us => {
-
       var Result = JSON.parse(us.text());
       this.Campeones = <Campeon[]>Result;
       this.List = this.Campeones;
@@ -81,29 +81,6 @@ export class ListComponent {
   }
 
 
-  getRecordsByChampion() {
-    this.recordService.GetMyRecordsByChampion(this.SelCampeon.Id).subscribe(us => {
-
-      var Result = JSON.parse(us.text());
-
-      this.Registros = <Registro[]>Result;
-
-    });
-  }
-
-  getRecordsByEnemy() {
-    this.recordService.GetMyRecordsByEnemy(this.SelEnemigo.Id).subscribe(us => {
-
-      var Result = JSON.parse(us.text());
-
-      this.Registros = <Registro[]>Result;
-
-
-      
-
-    });
-  }
-
   getRecordsByTypes() {
 
     this.Bolt = false;
@@ -118,7 +95,6 @@ export class ListComponent {
       var Result = JSON.parse(us.text());
 
       this.Registros = <Registro[]>Result;
-      this.SelectedRecord = null;
       this.Loading = false;
 
     },
@@ -132,9 +108,9 @@ export class ListComponent {
     return (Tipos.length == 0);
   }
 
-  saveRecord(registro: Registro) {
+  updateRecord(registro: Registro) {
+
     this.recordService.UpdateRecord(registro).subscribe(us => {
-      registro.Edit = false;
      this.notificationService.showDialog("success", "Registro editado con éxito.", 4000);
     });
   }
@@ -171,19 +147,18 @@ export class ListComponent {
 
   searchRecordsByChampions() {
     var Ids = this.SearchCampeones.filter(x => x.Id).map(x => x.Id);
-
+    this.Loading = true;
     this.recordService.ListByIds(Ids).subscribe(us => {
-
+      this.Loading = false;
       var Result = JSON.parse(us.text());
       this.Registros = <Registro[]>Result;
 
     });
   }
 
+  transformFecha(FechaNacimiento: Date): string {
+    return this.datePipe.transform(FechaNacimiento, "dd/MM/yyyy");
+  }
 
 
-  //selectRecord(registro: Registro) {
-  //  this.SelectedRecord = registro;
-  //  this.Editing = true;
-  //}
 }

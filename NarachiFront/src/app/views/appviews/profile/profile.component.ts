@@ -19,12 +19,14 @@ export class ProfileComponent {
 
   Usuario = new Usuario();
   User = new ChangePassword();
+  Profile = true;
+  ChangePass = false;
 
 
   Generos: any[] = [{ "Id": 0, "Nombre": "Masculino" }, { "Id": 1, "Nombre": "Femenino"}];
 
 
-  constructor(private userService: UserService, private datePipe: DatePipe, private appService: AppService, private notificationService: NotificationService) {
+  constructor(private userService: UserService, private appService: AppService, private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -32,15 +34,12 @@ export class ProfileComponent {
   }
 
   getProfile() {
-    var User = JSON.parse(localStorage.getItem('profile'));
+    var User = JSON.parse(localStorage.getItem('NarachiProfile'));
     this.Usuario = <Usuario>User;
-    console.log(this.Usuario);
   }
 
  
-  transformFecha(FechaNacimiento: Date): string {
-    return this.datePipe.transform(FechaNacimiento, "dd/MM/yyyy");
-  }
+  
 
   getAgeByDate(date: any): number {
 
@@ -57,8 +56,8 @@ export class ProfileComponent {
   saveUser() {
     this.userService.updateUser(this.Usuario).subscribe(us => {
 
-      localStorage.removeItem('profile');
-      localStorage.setItem('profile', JSON.stringify(this.Usuario));
+      localStorage.removeItem('NarachiProfile');
+      localStorage.setItem('NarachiProfile', JSON.stringify(this.Usuario));
       this.appService.setUsuario(this.Usuario);
       this.notificationService.showDialog("success", "Perfil guardado con éxito.", 4000);
 
@@ -102,7 +101,16 @@ export class ProfileComponent {
 
   changePassword() {
 
-    this.userService.changePassword(this.User).subscribe(us => { });
+    this.userService.changePassword(this.User).subscribe(us => {
+      this.notificationService.showDialog("success", "Contraseña actualizada correctamente.", 4000);
+      this.User = new ChangePassword();
+    },
+
+      error => {
+        this.notificationService.showDialog("error", "Algo salió mal. Verifique los datos ingresados o intentelo más tarde.", 4000);
+}
+
+    );
 
 
   }

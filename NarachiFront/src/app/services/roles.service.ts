@@ -4,11 +4,12 @@ import { JwtService } from '../jwt/jwt.service';
 import { Usuario } from '../models/Usuario';
 import { Observable } from 'rxjs/Observable';
 import { ChangePassword } from '../views/appviews/profile/profile.component';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class RolesService {
 
-  private _getRoles = "https://localhost:44312/api/Roles/GetRoles";
+  private _getRoles = environment.apiUrl + "api/Roles/List";
 
 
   constructor(private http: Http, private _jwt: JwtService) {

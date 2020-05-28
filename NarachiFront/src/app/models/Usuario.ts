@@ -14,6 +14,7 @@ export class Usuario {
     Edad: number;
     RolId: string;
     Privilegio: number;
+    Nickname: string;
 
 }
 

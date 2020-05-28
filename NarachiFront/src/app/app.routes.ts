@@ -11,36 +11,24 @@ import {StarterViewComponent} from "./views/appviews/starterview.component";
 
 import {BlankLayoutComponent} from "./components/common/layouts/blankLayout.component";
 import {BasicLayoutComponent} from "./components/common/layouts/basicLayout.component";
-import {TopNavigationLayoutComponent} from "./components/common/layouts/topNavigationlayout.component";
 import { LoginComponent } from "./views/appviews/login/login.component";
 import { SignUpComponent } from "./views/appviews/sign-up/sign-up.component";
 import { ProfileComponent } from "./views/appviews/profile/profile.component";
 import { AddRecordComponent } from "./views/appviews/records/addrecord.component";
 import { ListComponent } from "./views/appviews/records/list.component";
+import { RecordsComponent } from "./views/appviews/admin/records.component";
+import { ChampionsComponent } from "./views/appviews/admin/champions.component";
+import { CanActivateViaAuthGuard } from "./guards/auth-guard-service";
+import { UsersComponent } from "./views/appviews/admin/users.component";
+import { NewsComponent } from "./views/appviews/admin/news.component";
+import { RoleGuardService } from "./guards/role-guard-service";
 
 export const ROUTES:Routes = [
   // Main redirect
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 
-  // App views
   {
-    path: 'dashboards', component: BasicLayoutComponent,
-    children: [
-      {path: 'dashboard1', component: Dashboard1Component},
-      {path: 'dashboard2', component: Dashboard2Component},
-      {path: 'dashboard3', component: Dashboard3Component},
-      {path: 'dashboard4', component: Dashboard4Component},
-      {path: 'dashboard5', component: Dashboard5Component}
-    ]
-  },
-  {
-    path: 'dashboards', component: TopNavigationLayoutComponent,
-    children: [
-      {path: 'dashboard41', component: Dashboard41Component}
-    ]
-  },
-  {
-    path: '', component: BasicLayoutComponent,
+    path: '', component: BasicLayoutComponent, canActivate: [CanActivateViaAuthGuard],
     children: [
       {path: 'home', component: StarterViewComponent}
     ]
@@ -48,7 +36,7 @@ export const ROUTES:Routes = [
   {
     path: '', component: BasicLayoutComponent,
     children: [
-      { path: 'profile', component: ProfileComponent }
+      { path: 'profile', component: ProfileComponent, canActivate: [CanActivateViaAuthGuard] }
     ]
   },
   {
@@ -64,16 +52,22 @@ export const ROUTES:Routes = [
     ]
   },
   {
-    path: 'records', component: BasicLayoutComponent,
+    path: 'records', component: BasicLayoutComponent, canActivate: [CanActivateViaAuthGuard],
     children: [
       { path: 'add', component: AddRecordComponent },
       { path: 'list', component: ListComponent },
-      { path: 'dashboard3', component: Dashboard3Component },
-      { path: 'dashboard4', component: Dashboard4Component },
-      { path: 'dashboard5', component: Dashboard5Component }
+    ]
+  },
+  {
+    path: 'administration', component: BasicLayoutComponent,
+    children: [
+      { path: 'records', component: RecordsComponent, pathMatch: 'full', data: { expectedPrivilege: '2' }, canActivate: [RoleGuardService] },
+      { path: 'champions', component: ChampionsComponent, pathMatch: 'full', data: { expectedPrivilege: '3' }, canActivate: [RoleGuardService] },
+      { path: 'users', component: UsersComponent, pathMatch: 'full', data: { expectedPrivilege: '3' }, canActivate: [RoleGuardService] },
+      { path: 'news', component: NewsComponent, pathMatch: 'full', data: { expectedPrivilege: '4' }, canActivate: [RoleGuardService] },
     ]
   },
 
-   //Handle all other routes
-  {path: '**',  redirectTo: 'home'}
+  //Handle all other routes
+  { path: '**', redirectTo: 'home'}
 ];

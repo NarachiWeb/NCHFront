@@ -4,13 +4,13 @@
     "\\NarachiFront",
     "\\NarachiFront\\src",
     "\\NarachiFront\\src\\app",
-    "\\NarachiFront\\src\\app\\components",
-    "\\NarachiFront\\src\\app\\components\\common",
-    "\\NarachiFront\\src\\app\\components\\common\\topnavbar",
+    "\\NarachiFront\\src\\app\\models",
     "\\NarachiFront\\src\\app\\views",
     "\\NarachiFront\\src\\app\\views\\appviews",
-    "\\NarachiFront\\src\\app\\views\\appviews\\login"
+    "\\NarachiFront\\src\\app\\views\\appviews\\records",
+    "\\NarachiFront\\src\\assets",
+    "\\NarachiFront\\src\\assets\\styles\\imports"
   ],
-  "SelectedNode": "\\NarachiFront\\src\\app\\app.component.html",
+  "SelectedNode": "\\NarachiFront\\src\\app\\views\\appviews\\records\\list.template.html",
   "PreviewInSolutionExplorer": false
 }
