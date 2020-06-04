@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Usuario } from "../models/Usuario";
 import { BehaviorSubject, Subject, Observable } from "rxjs";
+import { DatePipe } from "@angular/common";
 
 @Injectable()
 export class AppService {
@@ -9,21 +10,24 @@ export class AppService {
 
 
 
-    constructor() {
+    constructor(private datePipe: DatePipe) {
 
     }
 
     setUsuario(user: Usuario) {
-        return this.Usuario.next(user);
+      localStorage.removeItem('profile');
+      localStorage.setItem('profile', JSON.stringify(user));
+
+
+      return this.Usuario.next(user);
     }
+
 
     getUsuario(): Observable<Usuario> {
 
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        let token = currentUser && currentUser.token;
-
-        return this.Usuario;
+      return this.Usuario;
     }
+
 
     removeDuplicates(originalArray, prop) {
         var newArray = [];
@@ -36,6 +40,20 @@ export class AppService {
             newArray.push(lookupObject[i]);
 
         return newArray;
+    }
+
+    transformFecha(FechaNacimiento: Date): string {
+      return this.datePipe.transform(FechaNacimiento, "dd/MM/yyyy");
+    }
+
+    getAgeByDate(date: any): number {
+
+      const today = new Date();
+      const birthDate = new Date(date);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) { age-- }
+      return age;
     }
 
 }

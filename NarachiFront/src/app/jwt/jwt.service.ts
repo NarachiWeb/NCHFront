@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 
 import { JwtRequestOptions } from './jwt.options';
 import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class JwtService extends Http {
@@ -17,7 +18,8 @@ export class JwtService extends Http {
     constructor(
         backend: XHRBackend,
         defaultOptions: JwtRequestOptions,
-        private authService: AuthenticationService) {
+      private authService: AuthenticationService,
+      private router: Router) {
         super(backend, defaultOptions);
         let user = JSON.parse(localStorage.getItem('currentUser'));
         this.token = user && user.token;
@@ -29,7 +31,9 @@ export class JwtService extends Http {
         if (this.IsTokenExpired())
             return this.authService.refreshToken().catch((error: any) => {
                 console.log('errorcatch', error);
-                this.authService.logOut();
+              this.authService.logOut();
+              this.router.navigate(['login']);
+
                 return Observable.throw(new Error(error.status));
 
             }).flatMap(() => { return this.get(url, options); });
@@ -57,7 +61,9 @@ export class JwtService extends Http {
         if (this.IsTokenExpired())
             return this.authService.refreshToken().catch((error: any) => {
                 console.log('errorcatch', error);
-                this.authService.logOut();
+              this.authService.logOut();
+              this.router.navigate(['login']);
+
                 return Observable.throw(new Error(error.status));
 
             })
@@ -90,7 +96,9 @@ export class JwtService extends Http {
 
         if (this.IsTokenExpired())
             return this.authService.refreshToken().catch((error: any) => {
-                this.authService.logOut();
+              this.authService.logOut();
+              this.router.navigate(['login']);
+
                 return Observable.throw(new Error(error.status));
 
             })
@@ -121,7 +129,9 @@ export class JwtService extends Http {
     put(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
         if (this.IsTokenExpired())
             return this.authService.refreshToken().catch((error: any) => {
-                this.authService.logOut();
+              this.authService.logOut();
+              this.router.navigate(['login']);
+
                 return Observable.throw(new Error(error.status));
 
             })
@@ -190,6 +200,14 @@ export class JwtService extends Http {
         return JSON.parse(window.atob(base64));
     }
 
+    public getPrivilege(): number {
+
+      var data = this.parseToken();
+      var privilege = data["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+      return +privilege;
+
+    }
+
     private IsTokenExpired(): boolean {
         let user = JSON.parse(localStorage.getItem('currentUser'));
         //console.log(user);
@@ -204,8 +222,8 @@ export class JwtService extends Http {
         //console.log(data);
         //Si esta por terminar la sesion ya refresco
         data.exp -= 240;
-        //console.log('isRefresh', (Date.now() / 1000) > data.exp);
-        return (Date.now() / 1000) > data.exp;
+        var value = (Date.now() / 1000) > data.exp
+        return value;
     }
 
     private requestOptions(options?: RequestOptionsArgs): RequestOptionsArgs {

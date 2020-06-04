@@ -8,4 +8,6 @@ export class Campeon {
     RolId: string;
     Avatar: string;
     Roles: RolesDeCampeon;
+
+    selected: boolean = false;
 }

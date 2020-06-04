@@ -12,5 +12,13 @@ export class Usuario {
     FechaEdicion: Date;
     Avatar: string;
     Edad: number;
+    RolId: string;
+    Privilegio: number;
+    Nickname: string;
 
+}
+
+export class LoginUser {
+  userName: string;
+  clave: string;
 }

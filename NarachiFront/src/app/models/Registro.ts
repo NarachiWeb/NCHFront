@@ -7,6 +7,6 @@ export class Registro {
     TipoDeRegistro: string;
     CreadoEn: Date;
     EditadoEn: Date;
-    TotalErrorConCampeon: string;
-    TotalErrorContraCampeon: string;
+    Privado: boolean = true;
+
 }

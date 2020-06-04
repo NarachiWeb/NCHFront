@@ -4,13 +4,13 @@
     "\\NarachiFront",
     "\\NarachiFront\\src",
     "\\NarachiFront\\src\\app",
-    "\\NarachiFront\\src\\app\\jwt",
     "\\NarachiFront\\src\\app\\models",
-    "\\NarachiFront\\src\\app\\services",
     "\\NarachiFront\\src\\app\\views",
     "\\NarachiFront\\src\\app\\views\\appviews",
-    "\\NarachiFront\\src\\app\\views\\appviews\\records"
+    "\\NarachiFront\\src\\app\\views\\appviews\\records",
+    "\\NarachiFront\\src\\assets",
+    "\\NarachiFront\\src\\assets\\styles\\imports"
   ],
-  "SelectedNode": "\\NarachiFront\\src\\app\\views\\appviews\\records\\addrecord.component.ts",
+  "SelectedNode": "\\NarachiFront\\src\\app\\views\\appviews\\records\\list.template.html",
   "PreviewInSolutionExplorer": false
 }

@@ -210,6 +210,10 @@ video {
     margin: 0 0 0 240px;
     //min-height: 2002px;
   }
+
+
+
+ 
 }
 
 .title-action {
@@ -1412,6 +1416,7 @@ body.mini-navbar.fixed-sidebar .profile-element, .block {
 
 .profile-element{
   position: relative;
+  outline: none;
 }
 
 body.mini-navbar.fixed-sidebar .nav-header {
