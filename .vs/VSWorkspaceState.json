@@ -5,12 +5,12 @@
     "\\NarachiFront\\src",
     "\\NarachiFront\\src\\app",
     "\\NarachiFront\\src\\app\\models",
+    "\\NarachiFront\\src\\app\\services",
     "\\NarachiFront\\src\\app\\views",
     "\\NarachiFront\\src\\app\\views\\appviews",
-    "\\NarachiFront\\src\\app\\views\\appviews\\records",
-    "\\NarachiFront\\src\\assets",
-    "\\NarachiFront\\src\\assets\\styles\\imports"
+    "\\NarachiFront\\src\\app\\views\\appviews\\admin",
+    "\\NarachiFront\\src\\app\\views\\appviews\\records"
   ],
-  "SelectedNode": "\\NarachiFront\\src\\app\\views\\appviews\\records\\list.template.html",
+  "SelectedNode": "\\NarachiFront\\src\\app\\views\\appviews\\admin\\champions.component.ts",
   "PreviewInSolutionExplorer": false
 }
