@@ -18,6 +18,7 @@ export class ChampionsComponent {
   List = new Array<Campeon>();
   Roles = new Array<RolesDeCampeon>();
   Search: string;
+  nCampeon = new Campeon();
 
   constructor(private championService: ChampionService, private rolesService: RolesService, private notificationService: NotificationService) {
   }
@@ -34,7 +35,7 @@ export class ChampionsComponent {
       this.Campeones = <Campeon[]>Result;
       this.List = <Campeon[]>Result;
 
-      this.Campeon = this.List[0];
+      //this.Campeon = this.List[0];
 
     });
   }
@@ -81,5 +82,15 @@ export class ChampionsComponent {
         this.notificationService.showDialog("error", "Ups, algo salió mal.", 3000)
 
       });
+  }
+
+  addChampion() {
+    this.championService.AddChampion(this.nCampeon).subscribe(us => {
+
+      this.notificationService.showDialog("info", "Campeón añadido con éxito.", 2000);
+      this.nCampeon = new Campeon();
+    }, err => {
+        this.notificationService.showDialog("error", "Ups, algo salió mal.", 3000);
+ });
   }
 }

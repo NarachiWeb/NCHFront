@@ -7,6 +7,10 @@
       <div class="ibox-content">
 
         <div class="form-group">
+          <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalNewCampeon">Agregar</button>
+        </div>
+
+        <div class="form-group">
           <label>Buscador de Campeones</label>
           <input class="form-control" type="search" value="Clear this." name="Search" [(ngModel)]="Search" (input)="filterSearch()" placeholder="Aatrox, Kha'Zix, Morgana..."/>
         </div>
@@ -79,4 +83,40 @@
 
 
 
+</div>
+
+<div class="modal inmodal" id="modalNewCampeon" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content animated fadeInDown">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <i class="fa fa-plus-square modal-icon"></i>
+        <h4 class="modal-title"> Nuevo Campeón</h4>
+        <small>Añada un nuevo campeón al sistema.</small>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" class="form-control" name="nCampeon.Nombre" [(ngModel)]="nCampeon.Nombre" />
+        </div>
+
+        <div class="form-group">
+          <label>Rol</label>
+          <select class="form-control" [(ngModel)]="nCampeon.RolId">
+            <option *ngFor="let r of Roles" [ngValue]="r.Id">{{r.Nombre}}</option>
+          </select>
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addChampion()" data-dismiss="modal"><i class="fa fa-edit"></i> Agregar</button>
+        <button type="button" class="btn btn-white" data-dismiss="modal">Cancelar</button>
+
+      </div>
+    </div>
+  </div>
 </div>
