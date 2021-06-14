@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Response } from '@angular/http';
 import { Registro } from '../models/Registro';
 import { environment } from '../environments/environment';
+import { PaginationParams } from '../models/PaginationParams';
 
 
 
@@ -15,6 +16,7 @@ export class RecordService {
     private _GetRecordsByType = environment.apiUrl + "api/Registro/GetRecordsByType";
     private _GetRecordsByTypes = environment.apiUrl + "api/Registro/GetRecordsByTypes";
     private _List = environment.apiUrl + "api/Registro/List";
+    private _PagedList = environment.apiUrl + "api/Registro/PagedList";
     private _GetMyRecordsByChampion = environment.apiUrl + "api/Registro/GetMyRecordsByChampion";
     private _GetMyRecordsByEnemy = environment.apiUrl + "api/Registro/GetMyRecordsByEnemy";
     private _UpdateRecord = environment.apiUrl + "api/Registro/Update";
@@ -41,6 +43,10 @@ export class RecordService {
 
     public List(): Observable<Response> {
         return this.jwtService.get(this._List);
+    }
+
+    public getPagedList(params: PaginationParams): Observable<Response> {
+        return this.jwtService.post(this._PagedList, params);
     }
 
     public ListByIds(Ids: string[]): Observable<Response> {

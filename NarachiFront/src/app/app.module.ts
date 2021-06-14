@@ -23,8 +23,8 @@ import { RolesService } from './services/roles.service';
 import { NotificationService } from './services/notification.service';
 import { DataService } from './services/data.service';
 import { CanActivateViaAuthGuard } from './guards/auth-guard-service';
-import { JwtService } from './jwt/jwt.service';
 import { RoleGuardService } from './guards/role-guard-service';
+import { NchPaginationComponent } from './nch-pagination/nch-pagination.component';
 
 @NgModule({
   declarations: [

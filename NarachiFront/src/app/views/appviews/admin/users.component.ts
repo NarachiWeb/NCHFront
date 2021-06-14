@@ -5,6 +5,8 @@ import { Usuario } from '../../../models/Usuario';
 import { AppService } from '../../../services/app.service';
 import { Rol } from '../../../models/Rol';
 import { JwtService } from '../../../jwt/jwt.service';
+import { PaginationParams } from '../../../models/PaginationParams';
+import { GridDTO } from '../../../models/GridDTO';
 
 @Component({
   selector: 'users',
@@ -17,26 +19,39 @@ export class UsersComponent {
   Usuarios = new Array<Usuario>();
   User = new Usuario();
   Roles = new Array<Rol>();
+  Grid = new GridDTO<Usuario>();
+  Loading = false;
+ 
+
 
   constructor(private notificationService: NotificationService, private userService: UserService, private appService: AppService, private jwtService: JwtService) {
+
+    
+
+
   }
 
   ngOnInit() {
 
-    this.getUsers();
+   
+    var params = new PaginationParams();
+    params.PageSize = 10;
+    params.PageNumber = 1;
+    this.getPagedUsers(params);
+
     this.getRoles();
   }
 
-  getUsers() {
-    this.userService.list().subscribe(us => {
+  getPagedUsers(params: PaginationParams) {
+    this.Loading = true;
+    this.userService.getPagedUsers(params).subscribe(us => {
 
       var Result = JSON.parse(us.text());
 
-      this.Usuarios = <Usuario[]>Result;
-
-    });
-
+      this.Grid = <GridDTO<Usuario>>Result;
+      this.Loading = false;
     
+    });
   }
 
   setFecha(date: Date) {
@@ -102,5 +117,6 @@ export class UsersComponent {
   }
 
   cameraButton(event) { }
+
 
 }

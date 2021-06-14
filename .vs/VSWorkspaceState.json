@@ -4,13 +4,12 @@
     "\\NarachiFront",
     "\\NarachiFront\\src",
     "\\NarachiFront\\src\\app",
+    "\\NarachiFront\\src\\app\\environments",
     "\\NarachiFront\\src\\app\\models",
     "\\NarachiFront\\src\\app\\services",
     "\\NarachiFront\\src\\app\\views",
     "\\NarachiFront\\src\\app\\views\\appviews",
-    "\\NarachiFront\\src\\app\\views\\appviews\\admin",
-    "\\NarachiFront\\src\\app\\views\\appviews\\records"
+    "\\NarachiFront\\src\\app\\views\\appviews\\admin"
   ],
-  "SelectedNode": "\\NarachiFront\\src\\app\\views\\appviews\\admin\\champions.component.ts",
   "PreviewInSolutionExplorer": false
 }

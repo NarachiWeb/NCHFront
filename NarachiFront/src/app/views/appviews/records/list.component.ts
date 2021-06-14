@@ -6,6 +6,8 @@ import { Campeon } from '../../../models/Campeon';
 import { TipoDeRegistro } from '../../../models/TipoDeRegistro';
 import { NotificationService } from '../../../services/notification.service';
 import { DatePipe } from '@angular/common';
+import { GridDTO } from '../../../models/GridDTO';
+import { PaginationParams } from '../../../models/PaginationParams';
 
 @Component({
   selector: 'list',
@@ -27,6 +29,7 @@ export class ListComponent {
   Search: string;
   Bolt: boolean = false;
   Editing: boolean = false;
+  Grid = new GridDTO<Registro>();
 
   constructor(private recordService: RecordService, private campeonService: ChampionService, private notificationService: NotificationService, private datePipe: DatePipe) {
   }
@@ -40,9 +43,9 @@ export class ListComponent {
 
   getRecords() {
     this.Loading = true;
-    this.recordService.List().subscribe(us => {
+    this.recordService.getPagedList({ PageNumber: 1, PageSize: 10 }).subscribe(us => {
       var Result = JSON.parse(us.text());
-      this.Registros = <Registro[]>Result;
+      this.Grid = <GridDTO<Registro>>Result;
       this.Loading = false;
     },
       error => { this.Loading = false;}
@@ -160,5 +163,16 @@ export class ListComponent {
     return this.datePipe.transform(FechaNacimiento, "dd/MM/yyyy");
   }
 
+  getPage(params: PaginationParams) {
+    debugger;
+    this.Loading = true;
+    this.recordService.getPagedList(params).subscribe(us => {
+      var Result = JSON.parse(us.text());
+      this.Grid = <GridDTO<Registro>>Result;
+      this.Loading = false;
+    },
+      error => { this.Loading = false; }
+    );
+  }
 
 }

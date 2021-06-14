@@ -19,6 +19,8 @@ import { ChampionsComponent } from "./admin/champions.component";
 import { UsersComponent } from "./admin/users.component";
 import { NewsComponent } from "./admin/news.component";
 import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
+import { NgxPaginationModule } from "ngx-pagination";
+import { NchPaginationComponent } from "../../nch-pagination/nch-pagination.component";
 //import { DemoMaterialModule } from "../../material/material-module";
 
 @NgModule({
@@ -32,7 +34,8 @@ import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
     RecordsComponent,
     ChampionsComponent,
     UsersComponent,
-    NewsComponent
+    NewsComponent,
+    NchPaginationComponent
   ],
   imports: [
     JwtModule,
@@ -42,6 +45,7 @@ import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
     SparklineModule,
     FormsModule,
     IboxtoolsModule,
+    NgxPaginationModule,
     BsDropdownModule.forRoot(),
     PaginationModule.forRoot()
 
@@ -58,7 +62,8 @@ import { BsDropdownModule, PaginationModule } from 'ngx-bootstrap';
     RecordsComponent,
     ChampionsComponent,
     UsersComponent,
-    NewsComponent
+    NewsComponent,
+    NchPaginationComponent
 
 
 
